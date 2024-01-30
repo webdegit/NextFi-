@@ -21,7 +21,7 @@ export const Home = () => {
           GlobalFi
         </Text>
         <Heading maxW="20ch" opacity={0.75}>
-          A Full Decentralized Reward Distribution built on secured smart
+          A Fully Decentralized Reward Distribution built on secured smart
           contracts.
         </Heading>
         <Button

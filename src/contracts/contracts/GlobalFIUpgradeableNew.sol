@@ -77,6 +77,7 @@ struct PoolStruct {
     uint256 rewardToDistribute;
     uint8 minUserCounter;
     uint256 userCountToUpgrade;
+    uint256 count;
     uint256[] userIds;
     uint256 totalRewardDistributed;
 }
@@ -272,7 +273,11 @@ contract GlobalFiUpgradeableNew is
         }
     }
 
-    function _upgradeIdToPool(uint256 _id) private {}
+    function _upgradeIdToPool() private {
+        for(uint8 i = 1; i < 20; ++i) {
+            
+        }
+    }
 
     /**
      * @dev Internal function to update the self address of a user in their account structure.
