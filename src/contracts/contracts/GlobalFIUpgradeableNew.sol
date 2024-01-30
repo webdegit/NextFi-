@@ -109,6 +109,8 @@ contract GlobalFiUpgradeableNew is
 
     SupportedTokensStruct[] private _supportedTokensList;
 
+    bool private _reentrancy;
+
     mapping(address => AccountStruct) private _mappingAccounts;
     mapping(uint256 => IdStruct) private _mappingIds;
     mapping(address => SupportedTokensStruct) private _mappingSupportedToken;
@@ -145,6 +147,13 @@ contract GlobalFiUpgradeableNew is
     event IdUpgradedInPool(uint256 id, uint8 poolId);
     event DistributedPoolReward(uint256 id, uint8 poolId, uint256 rewardInWei);
 
+    modifier ReentrancyGuard() {
+        require(!_reentrancy, "ReentrancyGuard(): Contract ReentrancyGuard");
+        _reentrancy = true;
+        _;
+        _reentrancy = false;
+    }
+
     /**
      * @dev Initializes the contract with default values and sets configuration parameters.
      *      This function is typically called only once during contract deployment.
@@ -160,6 +169,7 @@ contract GlobalFiUpgradeableNew is
         _teamLevelsToCount = 20;
 
         _adminAddress = msg.sender;
+        _taxBeneficiaryAddress = 0x14A8EE34eDcb63f88d301215862ff5E017eBdFf1;
 
         _registrationAmountInUSD = 10 * 1 ether;
 
@@ -273,7 +283,7 @@ contract GlobalFiUpgradeableNew is
         }
     }
 
-    function _upgradeIdToPool(address _tokenAddress) private {
+    function _upgradeIdToPool(address _tokenAddress) private ReentrancyGuard {
         for (uint8 i = 1; i < 20; ++i) {
             PoolStruct storage poolAccount = _mappingPools[i];
 
@@ -444,7 +454,7 @@ contract GlobalFiUpgradeableNew is
         uint256 _valueInWei,
         bool _isSpillOver,
         address _tokenAddress
-    ) private {
+    ) private ReentrancyGuard {
         uint256 userId = _userIdAccount.id;
         IdStruct storage referrerIdAccount;
         if (_isSpillOver) {
@@ -517,7 +527,7 @@ contract GlobalFiUpgradeableNew is
         uint256 _referrerId,
         address _userAddress,
         address _tokenAddress
-    ) external {
+    ) external ReentrancyGuard {
         address msgSender = msg.sender;
         uint256 valueInWei = _registrationAmountInUSD;
 
@@ -566,6 +576,46 @@ contract GlobalFiUpgradeableNew is
 
     function getIdAccount(uint256 _id) external view returns (IdStruct memory) {
         return _mappingIds[_id];
+    }
+
+    function getContractAnalytics()
+        external
+        view
+        returns (
+            uint256 usersCount,
+            uint256 idsCount,
+            uint256 nonGlobalIdsCount,
+            uint256 totalReferralPaid,
+            uint256 totalValueRegistered
+        )
+    {
+        usersCount = _users.length;
+        idsCount = _ids;
+        nonGlobalIdsCount = _nonGlobalIds.length;
+        totalReferralPaid = _totalReferralPaid;
+        totalValueRegistered = _totalValueRegistered;
+    }
+
+    function getContractDefaults()
+        external
+        view
+        returns (
+            uint256[] memory levelRates,
+            uint256 maxRefereeLimit,
+            uint256 teamLevelsToCount,
+            uint256 registrationAmountInUSD,
+            address adminAddress,
+            address taxBeneficiaryAddress,
+            uint256 taxPer
+        )
+    {
+        levelRates = _levelRates;
+        maxRefereeLimit = _maxRefereeLimit;
+        teamLevelsToCount = _teamLevelsToCount;
+        registrationAmountInUSD = _registrationAmountInUSD;
+        adminAddress = _adminAddress;
+        taxBeneficiaryAddress = _taxBeneficiaryAddress;
+        taxPer = _taxPer;
     }
 
     /**
