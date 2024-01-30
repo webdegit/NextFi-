@@ -650,8 +650,8 @@
       ]
     },
     "/Users/suru.martian/Documents/Projects/globalfi/src/contracts/contracts/GlobalFIUpgradeableNew.sol": {
-      "lastModificationDate": 1706596263118,
-      "contentHash": "4139b202656c01466b25a27c50013b1e",
+      "lastModificationDate": 1706602305553,
+      "contentHash": "b620401244fc4a68252095a8e158c2a1",
       "sourceName": "contracts/GlobalFIUpgradeableNew.sol",
       "solcConfig": {
         "version": "0.8.18",

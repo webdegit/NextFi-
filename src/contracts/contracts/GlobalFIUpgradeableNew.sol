@@ -73,7 +73,7 @@ struct IdStruct {
 }
 
 struct PoolStruct {
-    uint256 poolId;
+    uint8 poolId;
     uint256 rewardToDistribute;
     uint8 minUserCounter;
     uint256 userCountToUpgrade;
@@ -260,22 +260,58 @@ contract GlobalFiUpgradeableNew is
         poolsAccount.minUserCounter = _minUserCounter;
     }
 
-    function _pushIdToPool(IdStruct storage _idAccount, uint256 _id) private {
+    function _pushIdToPool(IdStruct storage _idAccount) private {
         if (!_idAccount.isInPool) {
             PoolStruct storage poolAccount = _mappingPools[1];
 
-            poolAccount.userIds.push(_id);
-            poolAccount.userCountToUpgrade++;
+            poolAccount.userIds.push(_idAccount.id);
+            poolAccount.count++;
 
             _idAccount.isInPool = true;
 
-            emit IdUpgradedInPool(_id, 1);
+            emit IdUpgradedInPool(_idAccount.id, 1);
         }
     }
 
-    function _upgradeIdToPool() private {
-        for(uint8 i = 1; i < 20; ++i) {
-            
+    function _upgradeIdToPool(address _tokenAddress) private {
+        for (uint8 i = 1; i < 20; ++i) {
+            PoolStruct storage poolAccount = _mappingPools[i];
+
+            if (poolAccount.poolId == 0) {
+                break;
+            }
+
+            if (poolAccount.count >= poolAccount.minUserCounter) {
+                PoolStruct storage nextPoolAccount = _mappingPools[i + 1];
+                nextPoolAccount.userIds.push(
+                    poolAccount.userIds[poolAccount.userCountToUpgrade]
+                );
+
+                emit IdUpgradedInPool(
+                    poolAccount.userIds[poolAccount.userCountToUpgrade],
+                    i + 1
+                );
+
+                IdStruct storage idAccount = _mappingIds[
+                    poolAccount.userIds[poolAccount.userCountToUpgrade]
+                ];
+
+                IERC20Upgradeable(_tokenAddress).transfer(
+                    idAccount.owner,
+                    _weiToTokens(poolAccount.rewardToDistribute, _tokenAddress)
+                );
+
+                emit DistributedPoolReward(
+                    poolAccount.userIds[poolAccount.userCountToUpgrade],
+                    poolAccount.poolId,
+                    poolAccount.rewardToDistribute
+                );
+
+                poolAccount.totalRewardDistributed += poolAccount
+                    .rewardToDistribute;
+
+                poolAccount.count = 0;
+            }
         }
     }
 
@@ -430,6 +466,10 @@ contract GlobalFiUpgradeableNew is
         for (uint256 i; i < levelRates.length; ++i) {
             referrerIdAccount = _mappingIds[_userIdAccount.referrerId];
 
+            if (i == 0) {
+                _pushIdToPool(referrerIdAccount);
+            }
+
             uint256 referralValue = (_valueInWei * levelRates[i]) / 100;
 
             IERC20Upgradeable(_tokenAddress).transfer(
@@ -459,6 +499,8 @@ contract GlobalFiUpgradeableNew is
 
             _userIdAccount = referrerIdAccount;
         }
+
+        _upgradeIdToPool(_tokenAddress);
 
         _totalReferralPaid += referralPaid;
     }

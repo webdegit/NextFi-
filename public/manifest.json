@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GlobalFi",
+  "name": "A fully decentralized reward distribution protocol.",
   "icons": [
     {
       "src": "favicon.ico",
