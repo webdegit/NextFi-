@@ -10,7 +10,7 @@ const BSC_MAINNET_KEY = process.env.BSC_MAINNET_KEY;
 const POLYGON_API_KEY = process.env.POLYGON_API_KEY;
 module.exports = {
   solidity: {
-    version: "0.8.18",
+    version: "0.8.20",
     settings: {
       optimizer: {
         enabled: true,

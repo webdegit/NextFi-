@@ -4,12 +4,15 @@ import React from 'react';
 import { useAccount } from 'wagmi';
 import { shortenAddress } from '../utils/shortenAddress';
 
-export const ConnectWalletButton = () => {
+export const ConnectWalletButton = ({ onClick }: { onClick?: () => void }) => {
   const { open } = useWeb3Modal();
   const { address, isConnecting } = useAccount();
   return (
     <Button
-      onClick={() => open()}
+      onClick={() => {
+        open();
+        onClick?.();
+      }}
       isLoading={isConnecting}
       loadingText="Connecting..."
       leftIcon={<Image src="/WalletConnectGradientLogo.png" maxW={8}></Image>}

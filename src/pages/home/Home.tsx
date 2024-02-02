@@ -1,5 +1,7 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { Button, Flex, Heading, Image, Text, Wrap } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import { ProjectName } from '../../constants/Config';
 
 export const Home = () => {
   return (
@@ -7,7 +9,7 @@ export const Home = () => {
       w="full"
       justify={'space-around'}
       minH={'95vh'}
-      pt={20}
+      py={20}
       spacing={10}
       align="center"
     >
@@ -18,9 +20,9 @@ export const Home = () => {
           fontWeight={900}
           color="pink.500"
         >
-          GlobalFi
+          {ProjectName}
         </Text>
-        <Heading maxW="20ch" opacity={0.75}>
+        <Heading maxW="20ch">
           A Fully Decentralized Reward Distribution built on secured smart
           contracts.
         </Heading>
@@ -31,11 +33,13 @@ export const Home = () => {
           colorScheme="purple"
           bg="purple.500"
           _hover={{
-            bg: "purple.400"
+            bg: 'purple.400',
           }}
           //   bgGradient='linear(to-r, red.500, yellow.500, blue)'
           borderRadius="full"
           //   color="white"
+          as={Link}
+          to="/register"
         >
           Register Now
         </Button>

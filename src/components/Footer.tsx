@@ -53,17 +53,14 @@ const SocialMediaIcons = ({
 export default function Footer() {
   return (
     <Box
-    //   bg={useColorModeValue('gray.50', 'gray.900')}
+      //   bg={useColorModeValue('gray.50', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
       borderTopRadius={[50, 75]}
       borderColor="pink.600"
       borderTopWidth="thin"
     >
       <Container as={Stack} maxW={'6xl'} py={10}>
-        <SimpleGrid
-          templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 1fr 1fr' }}
-          spacing={14}
-        >
+        <Wrap spacing={6}>
           <Stack spacing={6} w="max-content">
             <Flex direction="column" gap={3}>
               <Logo isFull={true}></Logo>
@@ -80,7 +77,7 @@ export default function Footer() {
               <SocialMediaIcons icon={FaDiscord}></SocialMediaIcons>
             </HStack>
           </Stack>
-        </SimpleGrid>
+        </Wrap>
       </Container>
     </Box>
   );

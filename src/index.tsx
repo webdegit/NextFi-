@@ -5,6 +5,8 @@ import { App } from './App';
 import * as serviceWorker from './serviceWorker';
 import { ProviderWeb3Modal } from './providers/ProviderWeb3Modal';
 import { ProviderChakraUi } from './providers/ProviderChakraUi';
+import { RouterProvider } from 'react-router-dom';
+import { NavigationRoutes } from './navigation/NavigationRoutes';
 
 const container = document.getElementById('root');
 if (!container) throw new Error('Failed to find the root element');
@@ -15,7 +17,7 @@ root.render(
     <ColorModeScript />
     <ProviderChakraUi>
       <ProviderWeb3Modal>
-        <App />
+        <RouterProvider router={NavigationRoutes}></RouterProvider>
       </ProviderWeb3Modal>
     </ProviderChakraUi>
   </React.StrictMode>
