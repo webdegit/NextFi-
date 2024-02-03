@@ -20,6 +20,7 @@ import {
   useColorModeValue,
   Show,
   HStack,
+  Tooltip,
 } from '@chakra-ui/react';
 import { ConnectWalletButton } from '../ConnectWalletButton';
 import { IconType } from 'react-icons';
@@ -29,32 +30,58 @@ import { AccountActionButton } from '../AccountActionButton';
 import { useAccount } from 'wagmi';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { Link } from 'react-router-dom';
+import { HiMenuAlt2 } from 'react-icons/hi';
 
-const MenuIcons = ({ heading, icon }: { heading?: string; icon: IconType }) => {
+const MenuIcons = ({
+  heading,
+  icon,
+  route,
+  onClick,
+}: {
+  heading?: string;
+  icon: IconType;
+  route: string;
+  onClick: () => void;
+}) => {
   return (
-    <Center
-      boxSize={16}
-      borderWidth="thin"
-      _hover={{
-        borderWidth: "thick"
-      }}
-      borderRadius="3xl"
-      cursor="pointer"
-      boxShadow="base"
-      bgColor={useColorModeValue('blackAlpha.50', 'blackAlpha.200')}
+    <Tooltip
+      label={heading}
+      placement="right-start"
+      hasArrow
+      p={2}
+      borderRadius="xl"
+      fontWeight="bold"
     >
-      <Icon as={icon} boxSize={6}></Icon>
-    </Center>
+      <Center
+        boxSize={16}
+        borderWidth="thin"
+        borderRadius="3xl"
+        cursor="pointer"
+        boxShadow="base"
+        bgColor={useColorModeValue('blackAlpha.50', 'blackAlpha.200')}
+        as={Link}
+        to={route}
+        onClick={onClick}
+      >
+        <Icon as={icon} boxSize={6}></Icon>
+      </Center>
+    </Tooltip>
   );
 };
 
-const NavUserMenu = () => {
+const NavUserMenu = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       {NavUserMenuObject.map((menuObject, key) => {
         return (
           <VStack>
-            <MenuIcons key={key} icon={menuObject?.icon}></MenuIcons>
+            <MenuIcons
+              key={key}
+              icon={menuObject?.icon}
+              heading={menuObject?.heading}
+              route={menuObject?.to}
+              onClick={onClose}
+            ></MenuIcons>
             <Show below="md">
               <Text>{menuObject?.heading}</Text>
             </Show>
@@ -73,12 +100,14 @@ export const NavMenu = () => {
     <>
       <IconButton
         aria-label="Nav Menu Drawer Button"
-        icon={<HamburgerIcon />}
+        icon={<HiMenuAlt2 size={27} />}
         onClick={onOpen}
+        size={['md', 'lg']}
+        variant="ghost"
+        borderRadius="full"
       ></IconButton>
       <Drawer
         isOpen={isOpen}
-        size="md"
         placement={useBreakpointValue(
           {
             base: 'bottom',
@@ -91,19 +120,49 @@ export const NavMenu = () => {
         onClose={onClose}
       >
         <DrawerOverlay
-          bg="blackAlpha.300"
-          backdropFilter="blur(10px) hue-rotate(90deg)"
+          //   bg="blackAlpha.300"
+          backdropFilter="blur(10px)"
         />
         <DrawerContent
-          borderTopRadius="3xl"
-          bgColor={useColorModeValue('white', 'gray.900')}
+          //   borderTopRadius="3xl"
+          bgColor={useColorModeValue('whiteAlpha.900', '#191A1A')}
+          backdropFilter="blur(10px)"
+          py={5}
+          borderRadius={'100px,0,0,0'}
+          borderLeftWidth={useBreakpointValue(
+            {
+              base: 0,
+              md: 'thick',
+            },
+            {
+              fallback: 'base',
+            }
+          )}
+          borderLeftRadius={useBreakpointValue(
+            {
+              base: 0,
+              md: 75,
+            },
+            {
+              fallback: 'md',
+            }
+          )}
+          borderTopWidth={useBreakpointValue(
+            {
+              base: 'thick',
+              md: 0,
+            },
+            {
+              fallback: 'md',
+            }
+          )}
         >
           <DrawerCloseButton />
           <DrawerHeader>
             {address ? (
               <HStack>
                 <ConnectWalletButton onClick={onClose} />
-                <AccountActionButton />
+                <AccountActionButton address={address} />
               </HStack>
             ) : null}
           </DrawerHeader>
@@ -114,7 +173,7 @@ export const NavMenu = () => {
               direction={['row', 'row', 'column']}
             >
               {address ? (
-                <NavUserMenu />
+                <NavUserMenu onClose={onClose} />
               ) : (
                 <VStack>
                   <Heading color="red">You are not connected.</Heading>
@@ -127,18 +186,16 @@ export const NavMenu = () => {
 
           <DrawerFooter display="flex" gap={5} justifyContent="center">
             <Button
-              onClick={onClose}
-              colorScheme="red"
-              rightIcon={<CloseIcon />}
-            >
-              Close
-            </Button>
-            <Button
               px={10}
               rightIcon={<FcGoodDecision />}
               as={Link}
               to="/register"
               onClick={onClose}
+              variant="outline"
+              h={14}
+              minW={200}
+              borderRadius="full"
+              colorScheme="green"
             >
               Register
             </Button>

@@ -15,7 +15,15 @@ export const ConnectWalletButton = ({ onClick }: { onClick?: () => void }) => {
       }}
       isLoading={isConnecting}
       loadingText="Connecting..."
-      leftIcon={<Image src="/WalletConnectGradientLogo.png" maxW={8}></Image>}
+      leftIcon={<Image src="/WalletConnectWhite.svg" maxW={8}></Image>}
+      size={["md","lg"]}
+      bgColor="twitter.500"
+      _hover={{
+        bgColor: "twitter.400"
+      }}
+      colorScheme="twitter"
+      color="white"
+      borderRadius="full"
     >
       {!address ? 'Connect Wallet' : shortenAddress(address)}
     </Button>

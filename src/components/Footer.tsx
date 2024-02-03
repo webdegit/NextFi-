@@ -37,7 +37,7 @@ const SocialMediaIcons = ({
 }) => {
   return (
     <Circle
-      size={10}
+      size={14}
       borderWidth="thin"
       borderColor="pink.500"
       cursor="pointer"
@@ -56,15 +56,21 @@ export default function Footer() {
       //   bg={useColorModeValue('gray.50', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
       borderTopRadius={[50, 75]}
-      borderColor="pink.600"
+      //   borderColor="pink.600"
       borderTopWidth="thin"
+      w="full"
     >
       <Container as={Stack} maxW={'6xl'} py={10}>
         <Wrap spacing={6}>
           <Stack spacing={6} w="max-content">
             <Flex direction="column" gap={3}>
-              <Logo isFull={true}></Logo>
-              <Text fontSize={'sm'}>
+              <Logo
+                isFull={true}
+                imageProps={{
+                  h: [16],
+                }}
+              ></Logo>
+              <Text fontSize="lg" maxW={['30ch', '50ch']}>
                 © 2023-2024 GlobalFi Network. All rights reserved
               </Text>
             </Flex>
