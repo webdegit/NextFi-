@@ -43,22 +43,24 @@ export const NavigationRoutes = createHashRouter([
           {
             path: 'userIdDisplay/:userAddress',
             element: <UserIdDisplay></UserIdDisplay>,
-          },
-          {
-            path: 'dashboard/:userId',
-            element: <Dashboard></Dashboard>,
-          },
-          {
-            path: 'rewards/:userId',
-            element: <Rewards></Rewards>,
-          },
-          {
-            path: 'teams/:userId',
-            element: <Teams></Teams>,
-          },
-          {
-            path: 'transactions/:userId',
-            element: <Transactions></Transactions>,
+            children: [
+              {
+                path: 'dashboard/:userId',
+                element: <Dashboard></Dashboard>,
+              },
+              {
+                path: 'rewards/:userId',
+                element: <Rewards></Rewards>,
+              },
+              {
+                path: 'teams/:userId',
+                element: <Teams></Teams>,
+              },
+              {
+                path: 'transactions/:userId',
+                element: <Transactions></Transactions>,
+              },
+            ],
           },
         ],
       },

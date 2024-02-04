@@ -1,73 +1,69 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  IconButton,
-  useDisclosure,
-  Button,
-  useBreakpointValue,
-  Center,
-  Icon,
-  Wrap,
-  VStack,
-  Heading,
-  Text,
-  useColorModeValue,
-  Show,
-  HStack,
-  Tooltip,
+    Button,
+    Drawer,
+    DrawerBody,
+    DrawerCloseButton,
+    DrawerContent,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    HStack,
+    Heading,
+    IconButton,
+    Show,
+    Text,
+    VStack,
+    Wrap,
+    useBreakpointValue,
+    useColorModeValue,
+    useDisclosure
 } from '@chakra-ui/react';
-import { ConnectWalletButton } from '../ConnectWalletButton';
-import { IconType } from 'react-icons';
-import { NavUserMenuObject } from './NavUserMenuObject';
 import { FcGoodDecision } from 'react-icons/fc';
-import { AccountActionButton } from '../AccountActionButton';
-import { useAccount } from 'wagmi';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import { Link } from 'react-router-dom';
 import { HiMenuAlt2 } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
+import { useAccount } from 'wagmi';
+import { AccountActionButton } from '../AccountActionButton';
+import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import { ConnectWalletButton } from '../ConnectWalletButton';
+import { MenuIconsComponent } from '../MenuIconsComponent';
+import { NavUserMenuObject } from './NavUserMenuObject';
 
-const MenuIcons = ({
-  heading,
-  icon,
-  route,
-  onClick,
-}: {
-  heading?: string;
-  icon: IconType;
-  route: string;
-  onClick: () => void;
-}) => {
-  return (
-    <Tooltip
-      label={heading}
-      placement="right-start"
-      hasArrow
-      p={2}
-      borderRadius="xl"
-      fontWeight="bold"
-    >
-      <Center
-        boxSize={16}
-        borderWidth="thin"
-        borderRadius="3xl"
-        cursor="pointer"
-        boxShadow="base"
-        bgColor={useColorModeValue('blackAlpha.50', 'blackAlpha.200')}
-        as={Link}
-        to={route}
-        onClick={onClick}
-      >
-        <Icon as={icon} boxSize={6}></Icon>
-      </Center>
-    </Tooltip>
-  );
-};
+// const MenuIcons = ({
+//   heading,
+//   icon,
+//   route,
+//   onClick,
+// }: {
+//   heading?: string;
+//   icon: IconType;
+//   route: string;
+//   onClick: () => void;
+// }) => {
+//   return (
+//     <Tooltip
+//       label={heading}
+//       placement="right-start"
+//       hasArrow
+//       p={2}
+//       borderRadius="xl"
+//       fontWeight="bold"
+//     >
+//       <Center
+//         boxSize={16}
+//         borderWidth="thin"
+//         borderRadius="3xl"
+//         cursor="pointer"
+//         boxShadow="base"
+//         bgColor={useColorModeValue('blackAlpha.50', 'blackAlpha.200')}
+//         as={Link}
+//         to={route}
+//         onClick={onClick}
+//       >
+//         <Icon as={icon} boxSize={6}></Icon>
+//       </Center>
+//     </Tooltip>
+//   );
+// };
 
 const NavUserMenu = ({ onClose }: { onClose: () => void }) => {
   return (
@@ -75,13 +71,13 @@ const NavUserMenu = ({ onClose }: { onClose: () => void }) => {
       {NavUserMenuObject.map((menuObject, key) => {
         return (
           <VStack>
-            <MenuIcons
+            <MenuIconsComponent
               key={key}
               icon={menuObject?.icon}
               heading={menuObject?.heading}
               route={menuObject?.to}
               onClick={onClose}
-            ></MenuIcons>
+            ></MenuIconsComponent>
             <Show below="md">
               <Text>{menuObject?.heading}</Text>
             </Show>
