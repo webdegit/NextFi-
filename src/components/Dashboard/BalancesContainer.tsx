@@ -6,11 +6,13 @@ export const BalancesContainer = ({
   icon,
   heading,
   balance,
+  balaceCurrencyImage
 }: {
   image?: string;
   icon?: IconType;
   heading: string;
   balance: string | number;
+  balaceCurrencyImage?: string
 }) => {
   return (
     <HStack w="full">
@@ -19,6 +21,7 @@ export const BalancesContainer = ({
       <Text>{heading}</Text>
       <Spacer />
       <Text>{balance}</Text>
+      {balaceCurrencyImage && <Image src={balaceCurrencyImage} w={5}></Image>}
     </HStack>
   );
 };

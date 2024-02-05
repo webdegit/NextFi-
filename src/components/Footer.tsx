@@ -37,7 +37,7 @@ const SocialMediaIcons = ({
 }) => {
   return (
     <Circle
-      size={14}
+      size={12}
       borderWidth="thin"
       borderColor="pink.500"
       cursor="pointer"

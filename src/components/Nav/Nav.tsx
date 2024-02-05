@@ -14,8 +14,11 @@ import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { NavMenu } from './NavMenu';
 import { ConnectWalletButton } from '../ConnectWalletButton';
 import { Logo } from '../Logo';
+import { useLocation } from 'react-router-dom';
 
 export const Nav = () => {
+  const routeLocation = useLocation()
+  console.log(routeLocation);
   return (
     <VStack>
       <HStack

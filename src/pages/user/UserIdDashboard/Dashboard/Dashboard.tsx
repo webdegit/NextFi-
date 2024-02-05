@@ -7,14 +7,20 @@ import { DashboardDataContainer } from '../../../../components/Dashboard/Dashboa
 import { MainHeading } from '../../../../components/Dashboard/MainHeading';
 import { supportedNetworkInfo } from '../../../../constants/Config';
 import { FaIdCardAlt, FaUser, FaUserFriends } from 'react-icons/fa';
-import { FaShop, FaUserGroup } from 'react-icons/fa6';
-import { HiOutlineUserGroup, HiOutlineUsers, HiUserGroup } from 'react-icons/hi';
+import { HiUserPlus } from 'react-icons/hi2';
+import { MdPool } from 'react-icons/md';
+import { FaHandHoldingHeart, FaShop, FaUserGroup } from 'react-icons/fa6';
+import {
+  HiOutlineUserGroup,
+  HiOutlineUsers,
+  HiUserGroup,
+} from 'react-icons/hi';
 
 export const Dashboard = () => {
   const chain = useChainId();
   const currentNetwork = supportedNetworkInfo[chain];
   return (
-    <VStack>
+    <VStack spacing={10}>
       <MainHeading heading="Dashboard" icon={RxDashboard}></MainHeading>
       <Wrap justify="center">
         <DashboardDataContainer
@@ -45,18 +51,21 @@ export const Dashboard = () => {
                 icon={FaUser}
                 heading="Self"
                 balance={10}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
               />
               <BalancesContainer
                 // image={`/currencyLogos/usdt.svg`}
                 icon={FaUserFriends}
                 heading="Direct"
                 balance={1000}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
               />
               <BalancesContainer
                 // image={`/currencyLogos/usdt.svg`}
                 icon={FaUserGroup}
                 heading="Team"
                 balance={1000}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
               />
             </VStack>
           }
@@ -77,6 +86,28 @@ export const Dashboard = () => {
                 icon={HiOutlineUserGroup}
                 heading="Team"
                 balance={1000}
+              />
+            </VStack>
+          }
+        ></DashboardDataContainer>
+        <DashboardDataContainer
+          heading="Rewards"
+          icon={FaHandHoldingHeart}
+          children={
+            <VStack spacing={5}>
+              <BalancesContainer
+                // image={`${currentNetwork?.icon}`}
+                icon={HiUserPlus}
+                heading="Referral"
+                balance={10}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              />
+              <BalancesContainer
+                // image={`/currencyLogos/usdt.svg`}
+                icon={MdPool}
+                heading="Pool"
+                balance={1000}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
               />
             </VStack>
           }
