@@ -10,6 +10,7 @@ import { Dashboard } from '../pages/user/UserIdDashboard/Dashboard/Dashboard';
 import { Rewards } from '../pages/user/UserIdDashboard/Rewards/Rewards';
 import { Teams } from '../pages/user/UserIdDashboard/Teams/Teams';
 import { Transactions } from '../pages/user/UserIdDashboard/Transactions/Transactions';
+import { UserIdDashboard } from '../pages/user/UserIdDashboard/UserIdDashboard';
 
 export const NavigationRoutes = createHashRouter([
   {
@@ -43,21 +44,29 @@ export const NavigationRoutes = createHashRouter([
           {
             path: 'userIdDisplay/:userAddress',
             element: <UserIdDisplay></UserIdDisplay>,
+          },
+          {
+            path: 'userIdDashboard/:userId',
+            element: <UserIdDashboard />,
             children: [
               {
-                path: 'dashboard/:userId',
+                index: true,
                 element: <Dashboard></Dashboard>,
               },
               {
-                path: 'rewards/:userId',
+                path: 'dashboard',
+                element: <Dashboard></Dashboard>,
+              },
+              {
+                path: 'rewards',
                 element: <Rewards></Rewards>,
               },
               {
-                path: 'teams/:userId',
+                path: 'teams',
                 element: <Teams></Teams>,
               },
               {
-                path: 'transactions/:userId',
+                path: 'transactions',
                 element: <Transactions></Transactions>,
               },
             ],

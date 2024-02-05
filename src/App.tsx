@@ -6,9 +6,9 @@ import { Outlet } from 'react-router-dom';
 import './global.css';
 
 export const App = () => (
-  <VStack>
+  <Flex flex={1} direction="column">
     <Nav></Nav>
     <Outlet />
     <Footer />
-  </VStack>
+  </Flex>
 );

@@ -9,7 +9,8 @@ export const NavUserIdDashboard = ({ userId }: { userId: number }) => {
       minW={200}
       borderRadius="3xl"
       borderWidth="thin"
-      bgColor={useColorModeValue('white', 'gray.900')}
+      //   bgColor={useColorModeValue('white', 'gray.900')}
+      py={10}
     >
       {NavUserIdDashboardObject?.map((menuObject, key) => {
         return (

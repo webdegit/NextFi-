@@ -12,10 +12,20 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { FcGoodDecision, FcNeutralDecision } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
 
 const UserIdCard = ({ userId }: { userId: number }) => {
   return (
-    <VStack borderRadius="3xl" borderWidth="thin" minW={150} minH={200} p={2}>
+    <VStack
+      borderRadius="3xl"
+      borderWidth="thin"
+      minW={150}
+      minH={200}
+      p={2}
+      as={Link}
+      to={`/user/userIdDashboard/${userId}`}
+      cursor="pointer"
+    >
       <HStack>
         <Text>UserId</Text>
         <Spacer />
@@ -44,7 +54,7 @@ const InactiveAccountComponent = () => {
         }}
         colorScheme="twitter"
         color="white"
-        rightIcon={<ArrowForwardIcon/>}
+        rightIcon={<ArrowForwardIcon />}
       >
         Register
       </Button>
@@ -56,7 +66,7 @@ export const UserIdDisplay = () => {
   const userIds = [1, 2, 3, 4, 5];
   // const userIds: any = [];
   return (
-    <VStack py={[10,20]} spacing={10}>
+    <VStack py={[10, 20]} spacing={10}>
       {userIds.length > 0 ? (
         <>
           <VStack>
