@@ -33,13 +33,14 @@ const CollapseMenu = ({
 
 export const NavUserIdMobile = () => {
   const { isOpen, onToggle } = useDisclosure();
-  const [menu, setMenu] = useState(NavUserIdDashboardObject);
+  const [menu, setMenu] = useState(NavUserIdDashboardObject?.[0]);
 
   return (
     <VStack w="full" px={7}>
       <CollapseMenu
-        heading={menu[0]?.heading}
-        icon={menu[0]?.icon}
+        heading={menu?.heading}
+        icon={menu?.icon}
+        to={menu?.heading}
       ></CollapseMenu>
     </VStack>
   );
