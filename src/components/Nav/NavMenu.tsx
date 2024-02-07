@@ -1,22 +1,22 @@
 import {
-    Button,
-    Drawer,
-    DrawerBody,
-    DrawerCloseButton,
-    DrawerContent,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    HStack,
-    Heading,
-    IconButton,
-    Show,
-    Text,
-    VStack,
-    Wrap,
-    useBreakpointValue,
-    useColorModeValue,
-    useDisclosure
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  HStack,
+  Heading,
+  IconButton,
+  Show,
+  Text,
+  VStack,
+  Wrap,
+  useBreakpointValue,
+  useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { FcGoodDecision } from 'react-icons/fc';
 import { HiMenuAlt2 } from 'react-icons/hi';
@@ -27,6 +27,7 @@ import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { ConnectWalletButton } from '../ConnectWalletButton';
 import { MenuIconsComponent } from '../MenuIconsComponent';
 import { NavUserMenuObject } from './NavUserMenuObject';
+import { FaTelegram, FaTelegramPlane } from 'react-icons/fa';
 
 // const MenuIcons = ({
 //   heading,
@@ -181,21 +182,38 @@ export const NavMenu = () => {
           </DrawerBody>
 
           <DrawerFooter display="flex" gap={5} justifyContent="center">
-            <Button
-              px={10}
-              rightIcon={<FcGoodDecision />}
-              as={Link}
-              to="/register"
-              onClick={onClose}
-              variant="outline"
-              h={14}
-              minW={200}
-              borderRadius="full"
-              colorScheme="green"
-            >
-              Register
-            </Button>
-            <ColorModeSwitcher />
+            <VStack>
+              <HStack>
+                <Button
+                  px={10}
+                  rightIcon={<FcGoodDecision />}
+                  as={Link}
+                  to="/register"
+                  onClick={onClose}
+                  variant="outline"
+                  h={14}
+                  minW={200}
+                  borderRadius="full"
+                  colorScheme="green"
+                >
+                  Register
+                </Button>
+                <ColorModeSwitcher />
+              </HStack>
+              <Button
+                h={14}
+                w={250}
+                borderRadius="full"
+                leftIcon={<FaTelegramPlane />}
+                bgColor="twitter.500"
+                _hover={{
+                  bgColor: 'twitter.400',
+                }}
+                colorScheme="twitter"
+              >
+                Join Telegram
+              </Button>
+            </VStack>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

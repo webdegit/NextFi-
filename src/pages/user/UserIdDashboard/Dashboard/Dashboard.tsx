@@ -8,7 +8,7 @@ import { MainHeading } from '../../../../components/Dashboard/MainHeading';
 import { supportedNetworkInfo } from '../../../../constants/Config';
 import { FaIdCardAlt, FaUser, FaUserFriends } from 'react-icons/fa';
 import { HiUserPlus } from 'react-icons/hi2';
-import { MdPool } from 'react-icons/md';
+import { MdPool, MdSpaceDashboard } from 'react-icons/md';
 import { FaHandHoldingHeart, FaShop, FaUserGroup } from 'react-icons/fa6';
 import {
   HiOutlineUserGroup,
@@ -21,7 +21,7 @@ export const Dashboard = () => {
   const currentNetwork = supportedNetworkInfo[chain];
   return (
     <VStack spacing={10}>
-      <MainHeading heading="Dashboard" icon={RxDashboard}></MainHeading>
+      <MainHeading heading="Dashboard" icon={MdSpaceDashboard}></MainHeading>
       <Wrap justify="center">
         <DashboardDataContainer
           heading="Balances"

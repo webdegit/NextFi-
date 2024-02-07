@@ -45,7 +45,7 @@ const SocialMediaIcons = ({
         borderWidth: 'thick',
       }}
     >
-      <Icon as={icon} boxSize={6}></Icon>
+      <Icon as={icon} boxSize={4}></Icon>
     </Circle>
   );
 };

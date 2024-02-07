@@ -27,6 +27,7 @@ export const MenuIconsComponent = ({
           borderWidth="thin"
           borderRadius="3xl"
           cursor="pointer"
+          // borderColor="pink"
         //   boxShadow="base"
         //   bgColor={useColorModeValue('blackAlpha.50', 'blackAlpha.200')}
           as={Link}

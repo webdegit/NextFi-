@@ -8,15 +8,16 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { NavUserIdDashboard } from '../../../components/Nav/NavUserIdDashboard/NavUserIdDashboard';
 import { NavUserIdMobile } from '../../../components/Nav/NavUserIdDashboard/NavUserIdMobile';
 
 export const UserIdDashboard = () => {
+  const {userId} = useParams();
   return (
-    <VStack>
-      <NavUserIdMobile />
-      <Wrap w="full" py={10} px={5}>
+    <VStack w="full">
+      <NavUserIdMobile userId={userId ?? 0}  />
+      <Wrap w="full" py={5} px={5}>
         <Hide below="md">
           <NavUserIdDashboard userId={0} />
         </Hide>

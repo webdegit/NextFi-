@@ -10,8 +10,7 @@ import {
   VStack,
   Wrap,
 } from '@chakra-ui/react';
-import React from 'react';
-import { FcGoodDecision, FcNeutralDecision } from 'react-icons/fc';
+import { FcNeutralDecision } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 
 const UserIdCard = ({ userId }: { userId: number }) => {
