@@ -1,6 +1,9 @@
 import { VStack } from '@chakra-ui/react';
 import { MenuIconsComponent } from '../../MenuIconsComponent';
-import { NavUserIdDashboardObject } from './NavUserIdDashboardObject';
+import {
+  NavUserIdDashboardObject,
+  navUserIdDashboardObjectFunction,
+} from './NavUserIdDashboardObject';
 
 export const NavUserIdDashboard = ({ userId }: { userId: number }) => {
   return (
@@ -10,9 +13,8 @@ export const NavUserIdDashboard = ({ userId }: { userId: number }) => {
       borderWidth="thin"
       //   bgColor={useColorModeValue('white', 'gray.900')}
       py={10}
-      
     >
-      {NavUserIdDashboardObject?.map((menuObject, key) => {
+      {navUserIdDashboardObjectFunction(userId)?.map((menuObject, key) => {
         return (
           <MenuIconsComponent
             key={key}

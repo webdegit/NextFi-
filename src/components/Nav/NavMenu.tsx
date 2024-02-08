@@ -71,9 +71,8 @@ const NavUserMenu = ({ onClose }: { onClose: () => void }) => {
     <>
       {NavUserMenuObject.map((menuObject, key) => {
         return (
-          <VStack>
+          <VStack key={key}>
             <MenuIconsComponent
-              key={key}
               icon={menuObject?.icon}
               heading={menuObject?.heading}
               route={menuObject?.to}
