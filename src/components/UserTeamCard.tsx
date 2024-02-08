@@ -56,7 +56,9 @@ export const UserTeamCard = ({
             balance={userId}
             // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
           />
-          <Button>Open User Dashboard</Button>
+          <Button borderRadius={'full'} colorScheme="pink">
+            Open User Dashboard
+          </Button>
         </VStack>
       }
     ></DashboardDataContainer>
