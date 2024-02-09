@@ -1,7 +1,7 @@
 import { VStack, Wrap } from '@chakra-ui/react';
 import { IoWalletOutline } from 'react-icons/io5';
 import { RxDashboard } from 'react-icons/rx';
-import { useChainId } from 'wagmi';
+import { useAccount, useBalance, useChainId, useConfig } from 'wagmi';
 import { BalancesContainer } from '../../../../components/Dashboard/BalancesContainer';
 import { DashboardDataContainer } from '../../../../components/Dashboard/DashboardDataContainer';
 import { MainHeading } from '../../../../components/Dashboard/MainHeading';
@@ -18,10 +18,22 @@ import {
 import { useGetIdAccount } from '../../../../hooks/useReferralContract';
 
 export const Dashboard = () => {
+  const { address } = useAccount();
   const userIdAccount = useGetIdAccount(1);
-  console.log('User Id Account', userIdAccount);
   const chain = useChainId();
   const currentNetwork = supportedNetworkInfo[chain];
+  const userETHBalance = useBalance({
+    address: address,
+  });
+
+  const userUSDTBalance = useBalance({
+    address: address,
+    token: currentNetwork?.tokens?.['USDT']?.contractAddress,
+  });
+
+  const config = useConfig();
+
+  console.log(userETHBalance);
   return (
     <VStack spacing={10}>
       <MainHeading heading="Dashboard" icon={MdSpaceDashboard}></MainHeading>
@@ -33,13 +45,14 @@ export const Dashboard = () => {
             <VStack spacing={5}>
               <BalancesContainer
                 image={`${currentNetwork?.icon}`}
-                heading="Polygon"
-                balance={1000}
+                heading={config?.chains?.[0]?.name}
+                balance={Number(userETHBalance?.data?.formatted)?.toFixed(3)}
               />
+
               <BalancesContainer
                 image={`/currencyLogos/usdt.svg`}
-                heading="USDT"
-                balance={1000}
+                heading={currentNetwork?.tokens?.['USDT']?.name}
+                balance={Number(userUSDTBalance?.data?.formatted)?.toFixed(2)}
               />
             </VStack>
           }
