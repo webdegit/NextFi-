@@ -12,6 +12,11 @@ import {
 } from '@chakra-ui/react';
 import { FcNeutralDecision } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
+import { useAccount } from 'wagmi';
+import {
+  UserAccountType,
+  useGetUserAccount,
+} from '../../../hooks/useReferralContract';
 
 const UserIdCard = ({ userId }: { userId: number }) => {
   return (
@@ -41,8 +46,10 @@ const InactiveAccountComponent = () => {
   return (
     <VStack>
       <Icon boxSize={100} as={FcNeutralDecision}></Icon>
-      <Heading color="red">You account is not active yet.</Heading>
-      <Text>Please register to activate your account.</Text>
+      <Heading color="red" textAlign="center">
+        You account is not active yet.
+      </Heading>
+      <Text textAlign="center">Please register to activate your account.</Text>
       <Button
         w={250}
         h={14}
@@ -54,6 +61,8 @@ const InactiveAccountComponent = () => {
         colorScheme="twitter"
         color="white"
         rightIcon={<ArrowForwardIcon />}
+        as={Link}
+        to="/register"
       >
         Register
       </Button>
@@ -62,8 +71,14 @@ const InactiveAccountComponent = () => {
 };
 
 export const UserIdDisplay = () => {
-  const userIds = [1, 2, 3, 4, 5];
-  // const userIds: any = [];
+  const { address } = useAccount();
+
+  const userAccount = useGetUserAccount(address!)
+    ?.data as unknown as UserAccountType;
+
+  // const userIds = userAccount?.ids;
+  const userIds = [1, 2, 3, 4, 5, 6];
+
   return (
     <VStack py={[10, 20]} spacing={10}>
       {userIds.length > 0 ? (

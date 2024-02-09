@@ -11,9 +11,12 @@ import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { NavUserIdDashboard } from '../../../components/Nav/NavUserIdDashboard/NavUserIdDashboard';
 import { NavUserIdMobile } from '../../../components/Nav/NavUserIdDashboard/NavUserIdMobile';
+import { useAccount } from 'wagmi';
+import { useGetUserAccount } from '../../../hooks/useReferralContract';
 
 export const UserIdDashboard = () => {
   const {userId} = useParams();
+ 
   return (
     <VStack w="full">
       <NavUserIdMobile userId={userId ?? 0}  />

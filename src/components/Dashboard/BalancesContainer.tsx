@@ -11,7 +11,7 @@ export const BalancesContainer = ({
   image?: string;
   icon?: IconType;
   heading: string;
-  balance: string;
+  balance: number;
   balaceCurrencyImage?: string
 }) => {
   return (

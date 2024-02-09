@@ -6,6 +6,7 @@ export const ProjectName = 'GlobalFi';
 export type SupportedNetworkInfoType = {
   [key: number]: {
     icon: string;
+    currencyName: string;
     referralContract: `0x${string}`;
     tokens: {
       [key: string]: TokenInfoType;
@@ -23,6 +24,7 @@ export type TokenInfoType = {
 export const supportedNetworkInfo: SupportedNetworkInfoType = {
   [bscTestnet.id]: {
     icon: '/currencyLogos/bnb.svg',
+    currencyName: 'tBNB',
     referralContract: GlobalFiUpgradeable?.contractAddress?.[97],
     tokens: {
       ['USDT']: {
@@ -36,6 +38,7 @@ export const supportedNetworkInfo: SupportedNetworkInfoType = {
 
   [polygon?.id]: {
     icon: '/currencyLogos/polygon.svg',
+    currencyName: 'MATIC',
     referralContract: GlobalFiUpgradeable?.contractAddress?.[137],
     tokens: {
       ['USDT']: {

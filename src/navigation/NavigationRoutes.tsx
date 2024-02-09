@@ -32,6 +32,14 @@ export const NavigationRoutes = createHashRouter([
         ),
       },
       {
+        path: 'register/:referrerId',
+        element: (
+          <ProtectedRoutes>
+            <Registration></Registration>
+          </ProtectedRoutes>
+        ),
+      },
+      {
         path: 'user',
         element: (
           <ProtectedRoutes>

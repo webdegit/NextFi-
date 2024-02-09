@@ -36,6 +36,16 @@ export type UserIdAccountType = {
   team: bigint[];
 };
 
+export type UserAccountType = {
+  selfAddress: `0x${string}`;
+  ids: bigint[];
+}
+
+export const useGetUserAccount = (address: `0x${string}`) => {
+  const result = useReadContractHook('getUserAccount', [address]);
+  return result;
+};
+
 export const useGetIdAccount = (id: string | number) => {
   const result = useReadContractHook('getIdAccount', [id]);
   return result;

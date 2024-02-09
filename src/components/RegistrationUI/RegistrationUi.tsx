@@ -8,9 +8,29 @@ import {
   Input,
   VStack,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 import { FcGoodDecision } from 'react-icons/fc';
+import { useParams } from 'react-router-dom';
+import { useChainId, useSendTransaction, useWriteContract } from 'wagmi';
+import { supportedNetworkInfo } from '../../constants/Config';
 
 export const RegistrationUi = () => {
+  const { referrerId } = useParams();
+  const [inputValue, setInputValue] = useState<{
+    referrerId: undefined | number;
+  }>({
+    referrerId: undefined,
+  });
+
+  const chainId = useChainId();
+
+  const currentNetwork = supportedNetworkInfo[chainId];
+  const { data, writeContractAsync, status } = useWriteContract();
+
+  const prepareTransaction = () => {};
+
+  const sendTransaction = () => {};
+
   return (
     <VStack>
       <HStack>
@@ -33,6 +53,8 @@ export const RegistrationUi = () => {
             borderRadius="3xl"
             placeholder="Referral Id"
             fontSize="xl"
+            isDisabled={referrerId ? true : false}
+            value={referrerId ? referrerId : inputValue?.referrerId}
           ></Input>
         </Flex>
         <Flex direction="column">
