@@ -4,7 +4,7 @@ import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import { WagmiProvider } from 'wagmi';
-import { polygon } from 'wagmi/chains';
+import { bscTestnet, polygon } from 'wagmi/chains';
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();
@@ -20,7 +20,7 @@ const metadata = {
   icons: ['/LogoSmall.svg'],
 };
 
-const chains = [polygon];
+const chains = [polygon, bscTestnet];
 const config = defaultWagmiConfig({
   // @ts-ignore
   chains, // required

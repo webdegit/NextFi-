@@ -15,8 +15,11 @@ import {
   HiOutlineUsers,
   HiUserGroup,
 } from 'react-icons/hi';
+import { useGetIdAccount } from '../../../../hooks/useReferralContract';
 
 export const Dashboard = () => {
+  const userIdAccount = useGetIdAccount(1);
+  console.log('User Id Account', userIdAccount);
   const chain = useChainId();
   const currentNetwork = supportedNetworkInfo[chain];
   return (
