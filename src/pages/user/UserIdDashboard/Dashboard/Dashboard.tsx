@@ -36,7 +36,6 @@ export const Dashboard = () => {
     token: currentNetwork?.tokens?.['USDT']?.contractAddress,
   });
 
-  const config = useConfig();
   return (
     <VStack spacing={10}>
       <MainHeading heading="Dashboard" icon={MdSpaceDashboard}></MainHeading>

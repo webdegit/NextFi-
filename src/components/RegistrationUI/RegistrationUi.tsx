@@ -7,15 +7,23 @@ import {
   Icon,
   Input,
   VStack,
+  useToast,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FcGoodDecision } from 'react-icons/fc';
 import { useParams } from 'react-router-dom';
-import { useChainId, useSendTransaction, useWriteContract } from 'wagmi';
-import { supportedNetworkInfo } from '../../constants/Config';
+import {
+  useAccount,
+  useBalance,
+  useChainId,
+  useSendTransaction,
+  useWriteContract,
+} from 'wagmi';
+import { MinContribution, supportedNetworkInfo } from '../../constants/Config';
 
 export const RegistrationUi = () => {
   const { referrerId } = useParams();
+  const toast = useToast();
   const [inputValue, setInputValue] = useState<{
     referrerId: undefined | number;
   }>({
@@ -23,13 +31,31 @@ export const RegistrationUi = () => {
   });
 
   const chainId = useChainId();
+  const { address } = useAccount();
 
   const currentNetwork = supportedNetworkInfo[chainId];
   const { data, writeContractAsync, status } = useWriteContract();
 
-  const prepareTransaction = () => {};
+  const userUSDTBalance = useBalance({
+    address: address,
+    token: currentNetwork?.tokens?.['USDT']?.contractAddress,
+  });
+
+  const prepareTransaction = () => {
+    if (Number(userUSDTBalance?.data?.formatted ?? 0) < MinContribution) {
+      toast({
+        title: 'Value less than min contribution.',
+        description: '',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {}
+  };
 
   const sendTransaction = () => {};
+
+  useEffect(() => {});
 
   return (
     <VStack>

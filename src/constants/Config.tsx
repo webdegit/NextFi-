@@ -3,6 +3,8 @@ import { GlobalFiUpgradeable } from './ContractAddress';
 
 export const ProjectName = 'GlobalFi';
 
+export const MinContribution = 10;
+
 export type SupportedNetworkInfoType = {
   [key: number]: {
     icon: string;
