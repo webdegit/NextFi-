@@ -76,8 +76,10 @@ export const UserIdDisplay = () => {
   const userAccount = useGetUserAccount(address!)
     ?.data as unknown as UserAccountType;
 
-  // const userIds = userAccount?.ids;
-  const userIds = [1, 2, 3, 4, 5, 6];
+  const userIds = userAccount?.ids;
+  // const userIds = [1, 2, 3, 4, 5, 6];
+
+
 
   return (
     <VStack py={[10, 20]} spacing={10}>
@@ -88,8 +90,8 @@ export const UserIdDisplay = () => {
             <Text>Please select an id to go to dashboard.</Text>
           </VStack>
           <Wrap justify="center" align="center">
-            {userIds.map((userId: any, key: number) => {
-              return <UserIdCard userId={userId} key={key}></UserIdCard>;
+            {userIds.map((userId: bigint, key: number) => {
+              return <UserIdCard userId={Number(userId)} key={key}></UserIdCard>;
             })}
           </Wrap>
         </>

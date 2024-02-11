@@ -6,6 +6,7 @@ import {
   Heading,
   Icon,
   Input,
+  Text,
   VStack,
   useToast,
 } from '@chakra-ui/react';
@@ -17,24 +18,31 @@ import {
   useBalance,
   useChainId,
   useSendTransaction,
+  useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi';
 import { MinContribution, supportedNetworkInfo } from '../../constants/Config';
+import ReferralContractObject from '../../contracts/artifacts/contracts/GlobalFIUpgradeable.sol/GlobalFiUpgradeable.json';
 
 export const RegistrationUi = () => {
   const { referrerId } = useParams();
   const toast = useToast();
-  const [inputValue, setInputValue] = useState<{
-    referrerId: undefined | number;
+  const [userInput, setUserInput] = useState<{
+    referrerId: undefined | string;
   }>({
-    referrerId: undefined,
+    referrerId: referrerId ?? undefined,
   });
 
   const chainId = useChainId();
   const { address } = useAccount();
 
   const currentNetwork = supportedNetworkInfo[chainId];
-  const { data, writeContractAsync, status } = useWriteContract();
+  const { data, writeContractAsync, status, reset, error } = useWriteContract();
+  const result = useWaitForTransactionReceipt({
+    hash: data,
+  });
+
+  console.log(data);
 
   const userUSDTBalance = useBalance({
     address: address,
@@ -50,12 +58,69 @@ export const RegistrationUi = () => {
         duration: 5000,
         isClosable: true,
       });
-    } else {}
+    } else {
+      sendTransaction();
+    }
   };
 
-  const sendTransaction = () => {};
+  const sendTransaction = async () => {
+    try {
+      // @ts-ignore
+      await writeContractAsync({
+        abi: ReferralContractObject?.abi,
+        address: currentNetwork?.referralContract,
+        functionName: 'register',
+        args: [
+          userInput?.referrerId,
+          address,
+          currentNetwork?.tokens?.['USDT']?.contractAddress,
+        ],
+      });
+    } catch (err) {
+      const errorStringify = JSON.stringify(err);
+      // console.log(err);
+      console.log(
+        'Error Send Transaction',
+        JSON.parse(errorStringify)?.details
+      );
 
-  useEffect(() => {});
+      toast({
+        // @ts-ignore
+        title: JSON.parse(errorStringify)?.details,
+        description: data,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (result?.data?.status === 'success') {
+      toast({
+        title: 'Transaction Success.',
+        description: (
+          <VStack>
+            <Text maxW={'20ch'}>{data}</Text>
+            <Button colorScheme="pink">View in explorer</Button>
+          </VStack>
+        ),
+        status: 'success',
+        duration: 500000,
+        isClosable: true
+      });
+
+      reset();
+    } else if (result?.data?.status === 'reverted') {
+      toast({
+        title: 'Transaction Reverted.',
+        description: <Text maxW={'20ch'}>{data}</Text>,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  });
 
   return (
     <VStack>
@@ -80,7 +145,7 @@ export const RegistrationUi = () => {
             placeholder="Referral Id"
             fontSize="xl"
             isDisabled={referrerId ? true : false}
-            value={referrerId ? referrerId : inputValue?.referrerId}
+            value={referrerId ? referrerId : userInput?.referrerId}
           ></Input>
         </Flex>
         <Flex direction="column">
@@ -103,6 +168,9 @@ export const RegistrationUi = () => {
               bg: 'pink.400',
             }}
             colorScheme="pink"
+            onClick={prepareTransaction}
+            isLoading={status === 'pending' ? true : false}
+            loadingText="Transaction in progress..."
           >
             Register Now
           </Button>

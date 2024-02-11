@@ -66,9 +66,6 @@ export default function Footer() {
             <Flex direction="column" gap={3}>
               <Logo
                 isFull={true}
-                imageProps={{
-                  h: [16],
-                }}
               ></Logo>
               <Text fontSize="lg" maxW={['30ch', '50ch']}>
                 © 2023-2024 GlobalFi Network. All rights reserved

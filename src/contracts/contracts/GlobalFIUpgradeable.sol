@@ -405,7 +405,7 @@ contract GlobalFiUpgradeable is
             "_addReferrer(): Referee cannot be referrer upline."
         );
 
-        require(userId == 0, "_addReferrer(): User referrer already set.");
+        require(userId != 0, "_addReferrer(): User referrer already set.");
 
         if (!_checkIfMaxRefereeLimit(_firstReferrerIdAccount)) {
             _userIdAccount.referrerId = _firstReferrerIdAccount.id;
@@ -459,7 +459,7 @@ contract GlobalFiUpgradeable is
     ) private ReentrancyGuard {
         uint256 userId = _userIdAccount.id;
         IdStruct storage referrerIdAccount;
-        
+
         if (_isSpillOver) {
             referrerIdAccount = _mappingIds[_userIdAccount.parentId];
         } else {
@@ -535,8 +535,9 @@ contract GlobalFiUpgradeable is
         uint256 valueInWei = _registrationAmountInUSD;
 
         if (_mappingSupportedToken[_tokenAddress].isEnaled) {
-            IERC20Upgradeable(_tokenAddress).transfer(
+            IERC20Upgradeable(_tokenAddress).transferFrom(
                 msgSender,
+                address(this),
                 _weiToTokens(valueInWei, _tokenAddress)
             );
         } else {
@@ -561,12 +562,12 @@ contract GlobalFiUpgradeable is
 
         _register(userIdAccount, valueInWei);
 
-        _payDirectReferral(
-            userIdAccount,
-            valueInWei,
-            isSpillOver,
-            _tokenAddress
-        );
+        // _payDirectReferral(
+        //     userIdAccount,
+        //     valueInWei,
+        //     isSpillOver,
+        //     _tokenAddress
+        // );
 
         _totalValueRegistered += valueInWei;
     }

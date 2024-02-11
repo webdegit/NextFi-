@@ -16,6 +16,11 @@ export const useReadContractHook = (functionName: string, args: any[]) => {
   return result;
 };
 
+export type UserTeamType = {
+  teamId: bigint;
+  teamLevel: bigint;
+}
+
 export type UserIdAccountType = {
   business: {
     directBusiness: bigint;
@@ -33,7 +38,7 @@ export type UserIdAccountType = {
     referralRewards: bigint;
     spillOverRewards: bigint;
   };
-  team: bigint[];
+  team: UserTeamType[];
 };
 
 export type UserAccountType = {
