@@ -6,6 +6,7 @@ import {
   Heading,
   Icon,
   Spacer,
+  Spinner,
   Text,
   VStack,
   Wrap,
@@ -73,30 +74,37 @@ const InactiveAccountComponent = () => {
 export const UserIdDisplay = () => {
   const { address } = useAccount();
 
-  const userAccount = useGetUserAccount(address!)
-    ?.data as unknown as UserAccountType;
+  const userAccountHook = useGetUserAccount(address!);
+
+  const userAccount = userAccountHook?.data as unknown as UserAccountType;
 
   const userIds = userAccount?.ids;
   // const userIds = [1, 2, 3, 4, 5, 6];
 
-
-
   return (
     <VStack py={[10, 20]} spacing={10}>
-      {userIds.length > 0 ? (
+      {userAccountHook?.isFetched ? (
         <>
-          <VStack>
-            <Heading color="pink.500">Your user ids</Heading>
-            <Text>Please select an id to go to dashboard.</Text>
-          </VStack>
-          <Wrap justify="center" align="center">
-            {userIds.map((userId: bigint, key: number) => {
-              return <UserIdCard userId={Number(userId)} key={key}></UserIdCard>;
-            })}
-          </Wrap>
+          {userIds?.length > 0 ? (
+            <>
+              <VStack>
+                <Heading color="pink.500">Your user ids</Heading>
+                <Text>Please select an id to go to dashboard.</Text>
+              </VStack>
+              <Wrap justify="center" align="center">
+                {userIds?.map((userId: bigint, key: number) => {
+                  return (
+                    <UserIdCard userId={Number(userId)} key={key}></UserIdCard>
+                  );
+                })}
+              </Wrap>
+            </>
+          ) : (
+            <InactiveAccountComponent></InactiveAccountComponent>
+          )}
         </>
       ) : (
-        <InactiveAccountComponent></InactiveAccountComponent>
+        <Spinner />
       )}
     </VStack>
   );
