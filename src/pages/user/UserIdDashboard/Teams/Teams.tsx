@@ -24,6 +24,7 @@ import {
   UserTeamType,
   useGetIdAccount,
 } from '../../../../hooks/useReferralContract';
+import { UserTeamTableRow } from '../../../../components/UserTeamTable/UserTeamTableRow';
 
 export const Teams = () => {
   const { userId } = useParams();
@@ -42,7 +43,7 @@ export const Teams = () => {
         icon={FaUserTie}
       />
       <Icon as={ArrowDownIcon}></Icon>
-      <UserTeamCard heading="You" userId={Number(referrer)} icon={HiMiniUser} />
+      <UserTeamCard heading="You" userId={Number(userId)} icon={HiMiniUser} />
       <Icon as={ArrowDownIcon}></Icon>
       <Wrap justify="center">
         {directReferee?.map(() => {
@@ -70,14 +71,12 @@ export const Teams = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {team?.map((userIds: UserTeamType, key: number) => {
+              {team?.map((teamObject: UserTeamType, key: number) => {
                 return (
-                  <Tr key={key}>
-                    <Td>{Number(userIds?.teamId)}</Td>
-                    <Td>{1}</Td>
-                    <Td>{Number(userIds?.teamLevel)}</Td>
-                    <Td>{1}</Td>
-                  </Tr>
+                  <UserTeamTableRow
+                    teamObject={teamObject}
+                    key={key}
+                  ></UserTeamTableRow>
                 );
               })}
             </Tbody>

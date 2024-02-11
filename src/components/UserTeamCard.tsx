@@ -17,6 +17,10 @@ import { ArrowDownIcon } from '@chakra-ui/icons';
 import { IconType } from 'react-icons';
 import { FaClipboardUser } from 'react-icons/fa6';
 import { HiUserGroup } from 'react-icons/hi';
+import {
+  UserIdAccountType,
+  useGetIdAccount,
+} from '../hooks/useReferralContract';
 
 export const UserTeamCard = ({
   heading,
@@ -27,6 +31,8 @@ export const UserTeamCard = ({
   userId: number;
   icon: IconType;
 }) => {
+  const userIdAccount = useGetIdAccount(userId)
+    ?.data as unknown as UserIdAccountType;
   return (
     <DashboardDataContainer
       heading={heading}
@@ -46,14 +52,14 @@ export const UserTeamCard = ({
             // image={`${currentNetwork?.icon}`}
             icon={HiUserPlus}
             heading="Direct Team"
-            balance={userId}
+            balance={userIdAccount?.refereeIds?.length}
             // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
           />
           <BalancesContainer
             // image={`${currentNetwork?.icon}`}
             icon={HiUserGroup}
             heading="Team"
-            balance={userId}
+            balance={userIdAccount?.team?.length}
             // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
           />
           <Button borderRadius={'full'} colorScheme="pink">
