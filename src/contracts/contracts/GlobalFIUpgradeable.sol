@@ -405,7 +405,10 @@ contract GlobalFiUpgradeable is
             "_addReferrer(): Referee cannot be referrer upline."
         );
 
-        require(userId != 0, "_addReferrer(): User referrer already set.");
+        require(
+            _userIdAccount.referrerId == 0,
+            "_addReferrer(): User referrer already set."
+        );
 
         if (!_checkIfMaxRefereeLimit(_firstReferrerIdAccount)) {
             _userIdAccount.referrerId = _firstReferrerIdAccount.id;
