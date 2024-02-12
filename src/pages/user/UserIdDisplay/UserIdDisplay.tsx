@@ -79,7 +79,6 @@ export const UserIdDisplay = () => {
   const userAccount = userAccountHook?.data as unknown as UserAccountType;
 
   const userIds = userAccount?.ids;
-  // const userIds = [1, 2, 3, 4, 5, 6];
 
   return (
     <VStack py={[10, 20]} spacing={10}>

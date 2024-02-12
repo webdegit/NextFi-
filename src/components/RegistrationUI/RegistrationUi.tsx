@@ -49,6 +49,13 @@ export const RegistrationUi = () => {
 
   const currentNetwork = supportedNetworkInfo[chainId];
   const { data, writeContractAsync, status, reset, error } = useWriteContract();
+  const {
+    data: dataApprove,
+    writeContractAsync: writeContractAsyncApprove,
+    status: statusApprove,
+    reset: resetApprove,
+    error: errorApprove,
+  } = useWriteContract();
   const result = useWaitForTransactionReceipt({
     hash: data,
   });
@@ -102,7 +109,7 @@ export const RegistrationUi = () => {
   const approve = async () => {
     try {
       // @ts-ignore
-      await writeContractAsync({
+      await writeContractAsyncApprove({
         abi: erc20Abi,
         address: currentNetwork?.tokens['USDT']?.contractAddress,
         functionName: 'approve',
@@ -246,20 +253,20 @@ export const RegistrationUi = () => {
           </Alert>
         )}
         <HStack w="full">
-          {!hasSufficientAllowance && (
+          {hasSufficientAllowance && (
             <Button
               w="full"
               h={14}
               borderRadius="full"
-              bg="pink.500"
+              bg="twitter.500"
               _hover={{
-                bg: 'pink.400',
+                bg: 'twitter.400',
               }}
-              colorScheme="pink"
+              colorScheme="twitter"
               onClick={approve}
-              isLoading={status === 'pending' ? true : false}
-              loadingText="Transaction in progress..."
-              isDisabled={!referrerId || Number(referrerId) === 0}
+              isLoading={statusApprove === 'pending' ? true : false}
+              // loadingText="Transaction in progress..."
+              isDisabled={Number(referrerId) === 0}
             >
               Approve
             </Button>
@@ -276,10 +283,8 @@ export const RegistrationUi = () => {
             colorScheme="pink"
             onClick={prepareTransaction}
             isLoading={status === 'pending' ? true : false}
-            loadingText="Transaction in progress..."
-            isDisabled={
-              !referrerId || Number(referrerId) === 0 || !hasSufficientAllowance
-            }
+            // loadingText="Transaction in progress..."
+            isDisabled={Number(referrerId) === 0 || !hasSufficientAllowance}
           >
             Register
           </Button>
