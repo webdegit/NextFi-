@@ -75,10 +75,7 @@ export const RegistrationUi = () => {
   );
 
   const hasSufficientAllowance =
-    userUSDTAllowance?.isFetched &&
-    weiToDecimals(userUSDTAllowance?.data) >= MinContribution
-      ? true
-      : false;
+    weiToDecimals(userUSDTAllowance?.data) >= MinContribution ? true : false;
 
   const handleReferrerInput = (e: any) => {
     setUserInput({
@@ -217,8 +214,8 @@ export const RegistrationUi = () => {
         duration: 500000,
         isClosable: true,
       });
-          
-      reset();
+
+      resetApprove();
     } else if (resultApprove?.data?.status === 'reverted') {
       toast({
         title: 'Transaction Reverted.',
@@ -284,7 +281,7 @@ export const RegistrationUi = () => {
           </Alert>
         )}
         <HStack w="full">
-          {hasSufficientAllowance && (
+          {!hasSufficientAllowance && (
             <Button
               w="full"
               h={14}
