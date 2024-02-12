@@ -60,6 +60,10 @@ export const RegistrationUi = () => {
     hash: data,
   });
 
+  const resultApprove = useWaitForTransactionReceipt({
+    hash: dataApprove,
+  });
+
   const userUSDTBalance = useBalance({
     address: address,
     token: currentNetwork?.tokens?.['USDT']?.contractAddress,
@@ -189,6 +193,33 @@ export const RegistrationUi = () => {
 
       reset();
     } else if (result?.data?.status === 'reverted') {
+      toast({
+        title: 'Transaction Reverted.',
+        description: <Text maxW={'20ch'}>{data}</Text>,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  });
+
+  useEffect(() => {
+    if (resultApprove?.data?.status === 'success') {
+      toast({
+        title: 'Transaction Success.',
+        description: (
+          <VStack>
+            <Text maxW={'20ch'}>{data}</Text>
+            <Button colorScheme="pink">View in explorer</Button>
+          </VStack>
+        ),
+        status: 'success',
+        duration: 500000,
+        isClosable: true,
+      });
+
+      reset();
+    } else if (resultApprove?.data?.status === 'reverted') {
       toast({
         title: 'Transaction Reverted.',
         description: <Text maxW={'20ch'}>{data}</Text>,
