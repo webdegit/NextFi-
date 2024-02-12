@@ -217,7 +217,7 @@ export const RegistrationUi = () => {
         duration: 500000,
         isClosable: true,
       });
-
+          
       reset();
     } else if (resultApprove?.data?.status === 'reverted') {
       toast({
