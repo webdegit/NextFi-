@@ -5,14 +5,5 @@ import { NoAuth } from '../pages/Error';
 
 export const ProtectedRoutes = ({ children }: { children: ReactNode }) => {
   const { address } = useAccount();
-
-  return (
-    <VStack>
-      {address ? (
-        children
-      ) : (
-        <NoAuth></NoAuth>
-      )}
-    </VStack>
-  );
+  return <VStack>{address ? children : <NoAuth></NoAuth>}</VStack>;
 };

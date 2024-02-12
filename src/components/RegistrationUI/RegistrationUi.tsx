@@ -1,11 +1,18 @@
 import {
+  Alert,
+  AlertIcon,
   Button,
   Divider,
   Flex,
+  FormControl,
   HStack,
   Heading,
   Icon,
+  Image,
   Input,
+  InputElementProps,
+  Spacer,
+  Tag,
   Text,
   VStack,
   useToast,
@@ -23,14 +30,18 @@ import {
 } from 'wagmi';
 import { MinContribution, supportedNetworkInfo } from '../../constants/Config';
 import ReferralContractObject from '../../contracts/artifacts/contracts/GlobalFIUpgradeable.sol/GlobalFiUpgradeable.json';
+import { USDT } from '../../constants/ContractAddress';
+import { erc20Abi, parseEther, parseUnits } from 'viem';
+import { useGetEUSDTAllowance } from '../../hooks/useERC20Hooks';
+import { weiToDecimals } from '../../utils/weiToDecimals';
 
 export const RegistrationUi = () => {
   const { referrerId } = useParams();
   const toast = useToast();
   const [userInput, setUserInput] = useState<{
-    referrerId: undefined | string;
+    referrerId: string;
   }>({
-    referrerId: referrerId ?? undefined,
+    referrerId: referrerId ?? '',
   });
 
   const chainId = useChainId();
@@ -42,12 +53,29 @@ export const RegistrationUi = () => {
     hash: data,
   });
 
-  console.log(data);
-
   const userUSDTBalance = useBalance({
     address: address,
     token: currentNetwork?.tokens?.['USDT']?.contractAddress,
   });
+
+  const userUSDTAllowance = useGetEUSDTAllowance(
+    address,
+    currentNetwork?.referralContract
+  );
+
+  const hasSufficientAllowance =
+    userUSDTAllowance?.isFetched &&
+    weiToDecimals(userUSDTAllowance?.data) >= MinContribution
+      ? true
+      : false;
+
+  const handleReferrerInput = (e: any) => {
+    setUserInput({
+      referrerId: e.target.value,
+    });
+
+    console.log('Usser Referrer Input', userInput?.referrerId);
+  };
 
   const prepareTransaction = () => {
     if (Number(userUSDTBalance?.data?.formatted ?? 0) < MinContribution) {
@@ -58,8 +86,50 @@ export const RegistrationUi = () => {
         duration: 5000,
         isClosable: true,
       });
+    } else if (!userInput?.referrerId) {
+      toast({
+        title: 'Please enter referrer id.',
+        description: '',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     } else {
       sendTransaction();
+    }
+  };
+
+  const approve = async () => {
+    try {
+      // @ts-ignore
+      await writeContractAsync({
+        abi: erc20Abi,
+        address: currentNetwork?.tokens['USDT']?.contractAddress,
+        functionName: 'approve',
+        args: [
+          currentNetwork?.referralContract,
+          parseUnits(
+            MinContribution?.toString(),
+            currentNetwork?.tokens?.['USDT']?.decimals
+          ),
+        ],
+      });
+    } catch (err) {
+      const errorStringify = JSON.stringify(err);
+      // console.log(err);
+      console.log(
+        'Error Send Transaction',
+        JSON.parse(errorStringify)?.details
+      );
+
+      toast({
+        // @ts-ignore
+        title: JSON.parse(errorStringify)?.details,
+        description: data,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
@@ -107,7 +177,7 @@ export const RegistrationUi = () => {
         ),
         status: 'success',
         duration: 500000,
-        isClosable: true
+        isClosable: true,
       });
 
       reset();
@@ -137,31 +207,67 @@ export const RegistrationUi = () => {
         direction="column"
         gap={2}
       >
-        <Flex direction="column">
-          <Input
-            h={20}
-            borderWidth="thick"
-            borderRadius="3xl"
-            placeholder="Referral Id"
-            fontSize="xl"
-            isDisabled={referrerId ? true : false}
-            value={referrerId ? referrerId : userInput?.referrerId}
-          ></Input>
-        </Flex>
-        <Flex direction="column">
-          <Input
-            h={20}
-            borderWidth="thick"
-            borderRadius="3xl"
-            isReadOnly
-            placeholder="10 USDT"
-            fontSize="xl"
-          ></Input>
-        </Flex>
-        <VStack w="full">
+        <Text px={2}>Please enter a valid referrer id.</Text>
+        <Input
+          h={20}
+          borderWidth="thick"
+          borderRadius="3xl"
+          placeholder="Referral Id"
+          fontSize="xl"
+          isDisabled={referrerId ? true : false}
+          value={referrerId ? referrerId : userInput?.referrerId}
+          onChange={(e) => handleReferrerInput(e)}
+        ></Input>
+        {Number(userInput?.referrerId) === 0 && (
+          <Alert status="error" p={2} borderRadius="3xl">
+            <AlertIcon />
+            Invalid Referrer Id or not activated.
+          </Alert>
+        )}
+
+        <HStack w="full" px={2}>
+          <Heading size="sm">Balance</Heading>
+          <Spacer />
+          <Text>{userUSDTBalance?.data?.formatted}</Text>
+          <Image src="/currencyLogos/usdt.svg" w={5}></Image>
+        </HStack>
+        <Input
+          h={20}
+          borderWidth="thick"
+          borderRadius="3xl"
+          isReadOnly
+          placeholder="10 USDT"
+          fontSize="xl"
+        ></Input>
+        {Number(userUSDTBalance?.data?.formatted) < MinContribution && (
+          <Alert status="error" p={2} borderRadius="3xl">
+            <AlertIcon />
+            You don't have enogh USDT.
+          </Alert>
+        )}
+        <HStack w="full">
+          {!hasSufficientAllowance && (
+            <Button
+              w="full"
+              h={14}
+              borderRadius="full"
+              bg="pink.500"
+              _hover={{
+                bg: 'pink.400',
+              }}
+              colorScheme="pink"
+              onClick={approve}
+              isLoading={status === 'pending' ? true : false}
+              loadingText="Transaction in progress..."
+              isDisabled={!referrerId || Number(referrerId) === 0}
+            >
+              Approve
+            </Button>
+          )}
+
           <Button
-            h={16}
             w="full"
+            h={14}
             borderRadius="full"
             bg="pink.500"
             _hover={{
@@ -171,10 +277,13 @@ export const RegistrationUi = () => {
             onClick={prepareTransaction}
             isLoading={status === 'pending' ? true : false}
             loadingText="Transaction in progress..."
+            isDisabled={
+              !referrerId || Number(referrerId) === 0 || !hasSufficientAllowance
+            }
           >
-            Register Now
+            Register
           </Button>
-        </VStack>
+        </HStack>
       </Flex>
     </VStack>
   );

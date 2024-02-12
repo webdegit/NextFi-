@@ -47,13 +47,13 @@ export const navUserIdDashboardObjectFunction = (userId: string | number) => {
     {
       heading: 'Home',
       icon: AiFillHome,
-      to: '/',
-    },
-    {
-      heading: 'User Ids',
-      icon: FaIdCardClip,
       to: '/user',
     },
+    // {
+    //   heading: 'User Ids',
+    //   icon: FaIdCardClip,
+    //   to: '/user',
+    // },
     {
       heading: 'Dashboard',
       icon: MdSpaceDashboard,
