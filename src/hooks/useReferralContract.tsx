@@ -2,7 +2,10 @@ import { useChainId, useReadContract } from 'wagmi';
 import ReferralContractABI from '../contracts/artifacts/contracts/GlobalFIUpgradeable.sol/GlobalFiUpgradeable.json';
 import { supportedNetworkInfo } from '../constants/Config';
 
-export const useReadContractHook = (functionName: string, args: any[]) => {
+export const useReadContractHook = (
+  functionName: string,
+  args: any[],
+) => {
   const chainId = useChainId();
   const currentNetwork = supportedNetworkInfo[chainId];
   // @ts-ignore
@@ -11,6 +14,7 @@ export const useReadContractHook = (functionName: string, args: any[]) => {
     address: currentNetwork?.referralContract,
     functionName: functionName,
     args: args ?? [],
+    blockTag: "latest",
   });
 
   return result;
@@ -19,7 +23,7 @@ export const useReadContractHook = (functionName: string, args: any[]) => {
 export type UserTeamType = {
   teamId: bigint;
   teamLevel: bigint;
-}
+};
 
 export type UserIdAccountType = {
   business: {
@@ -44,7 +48,7 @@ export type UserIdAccountType = {
 export type UserAccountType = {
   selfAddress: `0x${string}`;
   ids: bigint[];
-}
+};
 
 export const useGetUserAccount = (address: `0x${string}`) => {
   const result = useReadContractHook('getUserAccount', [address]);
