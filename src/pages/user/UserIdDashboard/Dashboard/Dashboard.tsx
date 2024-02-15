@@ -64,6 +64,35 @@ export const Dashboard = () => {
           }
         ></DashboardDataContainer>
         <DashboardDataContainer
+          heading="Rewards"
+          icon={FaHandHoldingHeart}
+          children={
+            <VStack spacing={5}>
+              <BalancesContainer
+                // image={`${currentNetwork?.icon}`}
+                icon={HiUserPlus}
+                heading="Referral"
+                balance={weiToDecimals(userIdAccount?.rewards?.referralRewards)}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              />
+              <BalancesContainer
+                // image={`/currencyLogos/usdt.svg`}
+                icon={MdPool}
+                heading="Pool"
+                balance={weiToDecimals(userIdAccount?.rewards?.globalRewards)}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              />
+              {/* <BalancesContainer
+                // image={`/currencyLogos/usdt.svg`}
+                icon={MdPool}
+                heading="SpillOver Rewards"
+                balance={weiToDecimals(userIdAccount?.rewards?.globalRewards)}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              /> */}
+            </VStack>
+          }
+        ></DashboardDataContainer>
+        <DashboardDataContainer
           heading="Business"
           icon={FaShop}
           children={
@@ -109,35 +138,6 @@ export const Dashboard = () => {
                 heading="Team"
                 balance={userIdAccount?.team?.length}
               />
-            </VStack>
-          }
-        ></DashboardDataContainer>
-        <DashboardDataContainer
-          heading="Rewards"
-          icon={FaHandHoldingHeart}
-          children={
-            <VStack spacing={5}>
-              <BalancesContainer
-                // image={`${currentNetwork?.icon}`}
-                icon={HiUserPlus}
-                heading="Referral"
-                balance={weiToDecimals(userIdAccount?.rewards?.referralRewards)}
-                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-              />
-              <BalancesContainer
-                // image={`/currencyLogos/usdt.svg`}
-                icon={MdPool}
-                heading="Pool"
-                balance={weiToDecimals(userIdAccount?.rewards?.globalRewards)}
-                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-              />
-              {/* <BalancesContainer
-                // image={`/currencyLogos/usdt.svg`}
-                icon={MdPool}
-                heading="SpillOver Rewards"
-                balance={weiToDecimals(userIdAccount?.rewards?.globalRewards)}
-                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-              /> */}
             </VStack>
           }
         ></DashboardDataContainer>

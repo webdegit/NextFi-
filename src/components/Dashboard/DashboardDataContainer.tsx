@@ -12,7 +12,7 @@ export const DashboardDataContainer = ({
   children: ReactNode;
 }) => {
   return (
-    <VStack borderWidth="thin" borderRadius="3xl" p={5} minW={200}>
+    <VStack borderWidth="thin" borderRadius="3xl" p={5} minW={200} maxW={300}>
       <Heading size="md">{heading}</Heading>
       <Divider />
       <Icon as={icon} boxSize={50}></Icon>

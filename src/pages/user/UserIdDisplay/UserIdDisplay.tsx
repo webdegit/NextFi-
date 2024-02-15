@@ -79,13 +79,14 @@ export const UserIdDisplay = () => {
   const userAccount = userAccountHook?.data as unknown as UserAccountType;
 
   const userIds = userAccount?.ids;
+  const regenratedIds = [1, 2, 3, 4, 5, 7, 9];
 
   return (
     <VStack py={[10, 20]} spacing={10}>
       {userAccountHook?.isFetched ? (
         <>
           {userIds?.length > 0 ? (
-            <>
+            <VStack>
               <VStack>
                 <Heading color="pink.500">Your user ids</Heading>
                 <Text>Please select an id to go to dashboard.</Text>
@@ -97,7 +98,17 @@ export const UserIdDisplay = () => {
                   );
                 })}
               </Wrap>
-            </>
+              <Divider></Divider>
+              <Heading color="green.500">Regenerated User Ids</Heading>
+              <Text>Please select an id to go to dashboard.</Text>
+              <Wrap justify="center" align="center">
+                {regenratedIds?.map((userId, key) => {
+                  return (
+                    <UserIdCard userId={Number(userId)} key={key}></UserIdCard>
+                  );
+                })}
+              </Wrap>
+            </VStack>
           ) : (
             <InactiveAccountComponent></InactiveAccountComponent>
           )}

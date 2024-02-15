@@ -8,27 +8,29 @@ import { MdPool } from 'react-icons/md';
 
 export const Rewards = () => {
   return (
-    <DashboardDataContainer
-      heading="Rewards"
-      icon={FaHandHoldingHeart}
-      children={
-        <VStack spacing={5}>
-          <BalancesContainer
-            // image={`${currentNetwork?.icon}`}
-            icon={HiUserPlus}
-            heading="Referral"
-            balance={10}
-            balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-          />
-          <BalancesContainer
-            // image={`/currencyLogos/usdt.svg`}
-            icon={MdPool}
-            heading="Pool"
-            balance={1000}
-            balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-          />
-        </VStack>
-      }
-    ></DashboardDataContainer>
+    <VStack>
+      <DashboardDataContainer
+        heading="Rewards"
+        icon={FaHandHoldingHeart}
+        children={
+          <VStack spacing={5}>
+            <BalancesContainer
+              // image={`${currentNetwork?.icon}`}
+              icon={HiUserPlus}
+              heading="Referral"
+              balance={10}
+              balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+            />
+            <BalancesContainer
+              // image={`/currencyLogos/usdt.svg`}
+              icon={MdPool}
+              heading="Pool"
+              balance={1000}
+              balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+            />
+          </VStack>
+        }
+      ></DashboardDataContainer>
+    </VStack>
   );
 };
