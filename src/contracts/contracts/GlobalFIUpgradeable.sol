@@ -445,7 +445,9 @@ contract GlobalFiUpgradeable is
         uint256 levelsToCount = _teamLevelsToCount;
 
         for (uint256 i; i < levelsToCount; ++i) {
-            IdStruct storage referrerIdAccount = _mappingIds[_userIdAccount.id];
+            IdStruct storage referrerIdAccount = _mappingIds[
+                _userIdAccount.referrerId
+            ];
 
             referrerIdAccount.team.push(TeamStruct(userId, i + 1));
             emit TeamUpdated(referrerIdAccount.id, userId);

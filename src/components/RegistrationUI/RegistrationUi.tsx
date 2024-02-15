@@ -77,6 +77,8 @@ export const RegistrationUi = () => {
   const hasSufficientAllowance =
     weiToDecimals(userUSDTAllowance?.data) >= MinContribution ? true : false;
 
+    console.log("User Allowance", hasSufficientAllowance, "Allowance Value", weiToDecimals(userUSDTAllowance?.data));
+
   const handleReferrerInput = (e: any) => {
     setUserInput({
       referrerId: e.target.value,

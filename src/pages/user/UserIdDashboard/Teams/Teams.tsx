@@ -32,7 +32,7 @@ export const Teams = () => {
   const referrer = userIdAccount?.referrerId;
   const directReferee = userIdAccount?.refereeIds;
   const team = userIdAccount?.team as UserTeamType[];
-  console.log('team', team);
+
   return (
     <VStack spacing={5}>
       {userIdAccountHook?.isFetched ? (
