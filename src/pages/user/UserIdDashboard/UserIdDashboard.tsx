@@ -22,7 +22,7 @@ export const UserIdDashboard = () => {
       <NavUserIdMobile userId={userId ?? 0}  />
       <Wrap w="full" py={5} px={5}>
         <Hide below="md">
-          <NavUserIdDashboard userId={0} />
+          <NavUserIdDashboard userId={userId ?? 0} />
         </Hide>
         <Flex
           flex={1}

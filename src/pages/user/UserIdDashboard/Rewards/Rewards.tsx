@@ -5,8 +5,17 @@ import { VStack } from '@chakra-ui/react';
 import { BalancesContainer } from '../../../../components/Dashboard/BalancesContainer';
 import { HiUserPlus } from 'react-icons/hi2';
 import { MdPool } from 'react-icons/md';
+import { useParams } from 'react-router-dom';
+import {
+  UserIdAccountType,
+  useGetIdAccount,
+} from '../../../../hooks/useReferralContract';
+import { weiToDecimals } from '../../../../utils/weiToDecimals';
 
 export const Rewards = () => {
+  const { userId } = useParams();
+  const userIdAccount = useGetIdAccount(userId ?? 0)
+    ?.data as unknown as UserIdAccountType;
   return (
     <VStack>
       <DashboardDataContainer
@@ -18,14 +27,14 @@ export const Rewards = () => {
               // image={`${currentNetwork?.icon}`}
               icon={HiUserPlus}
               heading="Referral"
-              balance={10}
+              balance={weiToDecimals(userIdAccount?.rewards?.referralRewards)}
               balaceCurrencyImage={`/currencyLogos/usdt.svg`}
             />
             <BalancesContainer
               // image={`/currencyLogos/usdt.svg`}
               icon={MdPool}
               heading="Pool"
-              balance={1000}
+              balance={weiToDecimals(userIdAccount?.rewards?.globalRewards)}
               balaceCurrencyImage={`/currencyLogos/usdt.svg`}
             />
           </VStack>

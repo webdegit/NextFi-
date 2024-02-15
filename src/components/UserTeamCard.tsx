@@ -21,6 +21,7 @@ import {
   UserIdAccountType,
   useGetIdAccount,
 } from '../hooks/useReferralContract';
+import { useParams } from 'react-router-dom';
 
 export const UserTeamCard = ({
   heading,

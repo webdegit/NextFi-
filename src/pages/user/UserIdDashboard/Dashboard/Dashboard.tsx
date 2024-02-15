@@ -20,10 +20,13 @@ import {
   useGetIdAccount,
 } from '../../../../hooks/useReferralContract';
 import { weiToDecimals } from '../../../../utils/weiToDecimals';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export const Dashboard = () => {
   const { address } = useAccount();
-  const userIdAccount = useGetIdAccount(1)
+  const {userId} = useParams()
+  const userIdAccount = useGetIdAccount(userId ?? 0)
     ?.data as unknown as UserIdAccountType;
   const chain = useChainId();
   const currentNetwork = supportedNetworkInfo[chain];

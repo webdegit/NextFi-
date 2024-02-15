@@ -1,11 +1,10 @@
 import { VStack } from '@chakra-ui/react';
 import { MenuIconsComponent } from '../../MenuIconsComponent';
 import {
-  NavUserIdDashboardObject,
-  navUserIdDashboardObjectFunction,
+  navUserIdDashboardObjectFunction
 } from './NavUserIdDashboardObject';
 
-export const NavUserIdDashboard = ({ userId }: { userId: number }) => {
+export const NavUserIdDashboard = ({ userId }: { userId: string | number }) => {
   return (
     <VStack
       minW={200}
