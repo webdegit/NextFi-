@@ -16,7 +16,6 @@ export const useReadContractHook = (
     args: args ?? [],
     blockTag: "latest",
   });
-
   return result;
 };
 

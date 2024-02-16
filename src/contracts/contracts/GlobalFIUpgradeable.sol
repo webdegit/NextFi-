@@ -57,6 +57,7 @@ struct RefereeAssignedStruct {
 struct AccountStruct {
     address selfAddress;
     uint256[] ids;
+    uint256[] regeneratedIds;
 }
 
 struct IdStruct {
@@ -70,6 +71,9 @@ struct IdStruct {
     BusinessStruct business;
     RewardsStruct rewards;
     bool isInPool;
+    bool isRegenerated;
+    uint256[] regenratedIds;
+    uint256 regeneratedIdBy;
 }
 
 struct PoolStruct {
@@ -449,6 +453,10 @@ contract GlobalFiUpgradeable is
                 _userIdAccount.referrerId
             ];
 
+            if (_userIdAccount.referrerId == 0) {
+                break;
+            }
+
             referrerIdAccount.team.push(TeamStruct(userId, i + 1));
             emit TeamUpdated(referrerIdAccount.id, userId);
 
@@ -481,42 +489,42 @@ contract GlobalFiUpgradeable is
         uint256[] memory levelRates = _levelRates;
         uint256 referralPaid;
 
-        for (uint256 i; i < levelRates.length; ++i) {
-            referrerIdAccount = _mappingIds[_userIdAccount.referrerId];
+        // for (uint256 i; i < levelRates.length; ++i) {
+        //     referrerIdAccount = _mappingIds[_userIdAccount.referrerId];
 
-            if (i == 0) {
-                _pushIdToPool(referrerIdAccount);
-            }
+        //     if (i == 0) {
+        //         _pushIdToPool(referrerIdAccount);
+        //     }
 
-            uint256 referralValue = (_valueInWei * levelRates[i]) / 100;
+        //     uint256 referralValue = (_valueInWei * levelRates[i]) / 100;
 
-            IERC20Upgradeable(_tokenAddress).transfer(
-                referrerIdAccount.owner,
-                _weiToTokens(referralValue, _tokenAddress)
-            );
+        //     IERC20Upgradeable(_tokenAddress).transfer(
+        //         referrerIdAccount.owner,
+        //         _weiToTokens(referralValue, _tokenAddress)
+        //     );
 
-            emit ReferralDistributed(
-                referrerIdAccount.id,
-                userId,
-                referralValue,
-                i + 1
-            );
+        //     emit ReferralDistributed(
+        //         referrerIdAccount.id,
+        //         userId,
+        //         referralValue,
+        //         i + 1
+        //     );
 
-            referralPaid += referralValue;
+        //     referralPaid += referralValue;
 
-            referrerIdAccount.rewards.referralRewards += referralValue;
+        //     referrerIdAccount.rewards.referralRewards += referralValue;
 
-            referrerIdAccount.business.teamBusiness += _valueInWei;
+        //     referrerIdAccount.business.teamBusiness += _valueInWei;
 
-            emit TeamBusinessUpdated(
-                referrerIdAccount.id,
-                userId,
-                _valueInWei,
-                i + 1
-            );
+        //     emit TeamBusinessUpdated(
+        //         referrerIdAccount.id,
+        //         userId,
+        //         _valueInWei,
+        //         i + 1
+        //     );
 
-            _userIdAccount = referrerIdAccount;
-        }
+        //     _userIdAccount = referrerIdAccount;
+        // }
 
         _upgradeIdToPool(_tokenAddress);
 
@@ -567,12 +575,12 @@ contract GlobalFiUpgradeable is
 
         _register(userIdAccount, valueInWei);
 
-        // _payDirectReferral(
-        //     userIdAccount,
-        //     valueInWei,
-        //     isSpillOver,
-        //     _tokenAddress
-        // );
+        _payDirectReferral(
+            userIdAccount,
+            valueInWei,
+            isSpillOver,
+            _tokenAddress
+        );
 
         _totalValueRegistered += valueInWei;
     }
