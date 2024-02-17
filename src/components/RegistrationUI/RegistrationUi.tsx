@@ -182,7 +182,7 @@ export const RegistrationUi = () => {
         description: (
           <VStack>
             <Text maxW={'20ch'}>{data}</Text>
-            <Button colorScheme="pink">View in explorer</Button>
+            <Button colorScheme="pink" as="a" href={`${currentNetwork?.chainInfo?.blockExplorers?.default?.url}/tx/${result?.data?.transactionHash}`} target='_blank'>View in explorer</Button>
           </VStack>
         ),
         status: 'success',
@@ -199,6 +199,8 @@ export const RegistrationUi = () => {
         duration: 5000,
         isClosable: true,
       });
+
+      reset();
     }
   });
 
@@ -209,7 +211,7 @@ export const RegistrationUi = () => {
         description: (
           <VStack>
             <Text maxW={'20ch'}>{data}</Text>
-            <Button colorScheme="pink">View in explorer</Button>
+            <Button colorScheme="pink" as="a" href={`${currentNetwork?.chainInfo?.blockExplorers?.default?.url}/tx/${resultApprove?.data?.transactionHash}`} target='_blank'>View in explorer</Button>
           </VStack>
         ),
         status: 'success',

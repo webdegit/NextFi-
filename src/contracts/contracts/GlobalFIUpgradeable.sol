@@ -469,7 +469,7 @@ contract GlobalFiUpgradeable is
         uint256 _valueInWei,
         bool _isSpillOver,
         address _tokenAddress
-    ) private ReentrancyGuard {
+    ) private {
         uint256 userId = _userIdAccount.id;
         IdStruct storage referrerIdAccount;
 
@@ -489,44 +489,44 @@ contract GlobalFiUpgradeable is
         uint256[] memory levelRates = _levelRates;
         uint256 referralPaid;
 
-        // for (uint256 i; i < levelRates.length; ++i) {
-        //     referrerIdAccount = _mappingIds[_userIdAccount.referrerId];
+        for (uint256 i; i < levelRates.length; ++i) {
+            referrerIdAccount = _mappingIds[_userIdAccount.referrerId];
 
-        //     if (i == 0) {
-        //         _pushIdToPool(referrerIdAccount);
-        //     }
+            if (i == 0) {
+                // _pushIdToPool(referrerIdAccount);
+            }
 
-        //     uint256 referralValue = (_valueInWei * levelRates[i]) / 100;
+            uint256 referralValue = (_valueInWei * levelRates[i]) / 100;
 
-        //     IERC20Upgradeable(_tokenAddress).transfer(
-        //         referrerIdAccount.owner,
-        //         _weiToTokens(referralValue, _tokenAddress)
-        //     );
+            IERC20Upgradeable(_tokenAddress).transfer(
+                referrerIdAccount.owner,
+                _weiToTokens(referralValue, _tokenAddress)
+            );
 
-        //     emit ReferralDistributed(
-        //         referrerIdAccount.id,
-        //         userId,
-        //         referralValue,
-        //         i + 1
-        //     );
+            emit ReferralDistributed(
+                referrerIdAccount.id,
+                userId,
+                referralValue,
+                i + 1
+            );
 
-        //     referralPaid += referralValue;
+            referralPaid += referralValue;
 
-        //     referrerIdAccount.rewards.referralRewards += referralValue;
+            referrerIdAccount.rewards.referralRewards += referralValue;
 
-        //     referrerIdAccount.business.teamBusiness += _valueInWei;
+            referrerIdAccount.business.teamBusiness += _valueInWei;
 
-        //     emit TeamBusinessUpdated(
-        //         referrerIdAccount.id,
-        //         userId,
-        //         _valueInWei,
-        //         i + 1
-        //     );
+            emit TeamBusinessUpdated(
+                referrerIdAccount.id,
+                userId,
+                _valueInWei,
+                i + 1
+            );
 
-        //     _userIdAccount = referrerIdAccount;
-        // }
+            _userIdAccount = referrerIdAccount;
+        }
 
-        _upgradeIdToPool(_tokenAddress);
+        // _upgradeIdToPool(_tokenAddress);
 
         _totalReferralPaid += referralPaid;
     }

@@ -1,4 +1,4 @@
-import { bscTestnet, polygon } from 'viem/chains';
+import { Chain, bscTestnet, polygon } from 'viem/chains';
 import { GlobalFiUpgradeable } from './ContractAddress';
 
 export const ProjectName = 'GlobalFi';
@@ -10,6 +10,7 @@ export type SupportedNetworkInfoType = {
     icon: string;
     currencyName: string;
     referralContract: `0x${string}`;
+    chainInfo: Chain;
     tokens: {
       [key: string]: TokenInfoType;
     };
@@ -28,6 +29,7 @@ export const supportedNetworkInfo: SupportedNetworkInfoType = {
     icon: '/currencyLogos/bnb.svg',
     currencyName: 'tBNB',
     referralContract: GlobalFiUpgradeable?.contractAddress?.[97],
+    chainInfo: bscTestnet,
     tokens: {
       ['USDT']: {
         contractAddress: '0xDAE0b6BC392004435bC6743bf2443D17b095D7E7',
@@ -42,6 +44,7 @@ export const supportedNetworkInfo: SupportedNetworkInfoType = {
     icon: '/currencyLogos/polygon.svg',
     currencyName: 'MATIC',
     referralContract: GlobalFiUpgradeable?.contractAddress?.[137],
+    chainInfo: polygon,
     tokens: {
       ['USDT']: {
         contractAddress: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
