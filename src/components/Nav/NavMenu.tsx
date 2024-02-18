@@ -21,13 +21,14 @@ import {
 import { FcGoodDecision } from 'react-icons/fc';
 import { HiMenuAlt2 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { useAccount } from 'wagmi';
+import { useAccount, useChainId } from 'wagmi';
 import { AccountActionButton } from '../AccountActionButton';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { ConnectWalletButton } from '../ConnectWalletButton';
 import { MenuIconsComponent } from '../MenuIconsComponent';
 import { NavUserMenuObject } from './NavUserMenuObject';
 import { FaTelegram, FaTelegramPlane } from 'react-icons/fa';
+import { supportedNetworkInfo } from '../../constants/Config';
 
 // const MenuIcons = ({
 //   heading,
@@ -91,6 +92,8 @@ const NavUserMenu = ({ onClose }: { onClose: () => void }) => {
 export const NavMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { address } = useAccount();
+  const chainId = useChainId();
+  const currentNetwork = supportedNetworkInfo[chainId];
 
   return (
     <>
@@ -158,7 +161,12 @@ export const NavMenu = () => {
             {address ? (
               <HStack>
                 <ConnectWalletButton onClick={onClose} />
-                <AccountActionButton address={address} />
+                <AccountActionButton
+                  address={address}
+                  explorerAddress={
+                    currentNetwork?.chainInfo?.blockExplorers?.default?.url
+                  }
+                />
               </HStack>
             ) : null}
           </DrawerHeader>

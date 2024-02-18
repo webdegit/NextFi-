@@ -21,6 +21,7 @@ import {
   UserIdAccountType,
   useGetIdAccount,
 } from '../hooks/useReferralContract';
+import { Link } from 'react-router-dom';
 
 export const UserTeamCard = ({
   heading,
@@ -62,7 +63,14 @@ export const UserTeamCard = ({
             balance={userIdAccount?.team?.length}
             // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
           />
-          <Button borderRadius={'full'} colorScheme="pink">
+          <Button
+            borderRadius={'full'}
+            variant="outline"
+            as={Link}
+            to={`/user/userIdDashboard/${userId}/teams`}
+            target="_blank"
+            colorScheme="purple"
+          >
             Open User Dashboard
           </Button>
         </VStack>

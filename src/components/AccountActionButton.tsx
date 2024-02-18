@@ -1,5 +1,5 @@
 import { CheckIcon, CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons';
-import { HStack, Icon, useClipboard, useToast } from '@chakra-ui/react';
+import { HStack, Icon, Link, useClipboard, useToast } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
 export const AccountActionButton = ({
@@ -16,7 +16,7 @@ export const AccountActionButton = ({
     if (hasCopied) {
       toast({
         title: 'Address copied successfully.',
-        description: '',
+        description: `${address}`,
         status: 'success',
         duration: 5000,
         isClosable: true,
@@ -31,11 +31,9 @@ export const AccountActionButton = ({
         onClick={onCopy}
         cursor="pointer"
       ></Icon>
-      <Icon
-        as={ExternalLinkIcon}
-        href={`${explorerAddress}/address/${address}`}
-        cursor="pointer"
-      ></Icon>
+      <Link href={`${explorerAddress}/address/${address}`} target="_blank">
+        <Icon as={ExternalLinkIcon} cursor="pointer"></Icon>
+      </Link>
     </HStack>
   );
 };

@@ -1,18 +1,12 @@
 import {
   Flex,
-  HStack,
-  Heading,
   Hide,
   VStack,
-  Wrap,
-  useColorModeValue,
+  Wrap
 } from '@chakra-ui/react';
-import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { NavUserIdDashboard } from '../../../components/Nav/NavUserIdDashboard/NavUserIdDashboard';
 import { NavUserIdMobile } from '../../../components/Nav/NavUserIdDashboard/NavUserIdMobile';
-import { useAccount } from 'wagmi';
-import { useGetUserAccount } from '../../../hooks/useReferralContract';
 
 export const UserIdDashboard = () => {
   const { userId } = useParams();
