@@ -561,6 +561,10 @@ contract GlobalFiUpgradeable is
 
         AccountStruct storage userAccount = _mappingAccounts[_userAddress];
 
+        if (userAccount.ids.length == 0) {
+            _users.push(msgSender);
+        }
+
         _updateSelfAddress(userAccount, _userAddress);
 
         uint256 userId = _getNextId();

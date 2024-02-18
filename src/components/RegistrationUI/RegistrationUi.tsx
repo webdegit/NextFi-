@@ -56,6 +56,7 @@ export const RegistrationUi = () => {
     reset: resetApprove,
     error: errorApprove,
   } = useWriteContract();
+
   const result = useWaitForTransactionReceipt({
     hash: data,
   });
@@ -76,8 +77,6 @@ export const RegistrationUi = () => {
 
   const hasSufficientAllowance =
     weiToDecimals(userUSDTAllowance?.data) >= MinContribution ? true : false;
-
-    console.log("User Allowance", hasSufficientAllowance, "Allowance Value", weiToDecimals(userUSDTAllowance?.data));
 
   const handleReferrerInput = (e: any) => {
     setUserInput({
@@ -158,15 +157,12 @@ export const RegistrationUi = () => {
       });
     } catch (err) {
       const errorStringify = JSON.stringify(err);
-      // console.log(err);
-      console.log(
-        'Error Send Transaction',
-        JSON.parse(errorStringify)?.details
-      );
+
+      console.log('Send Transaction Error', JSON.parse(errorStringify));
 
       toast({
         // @ts-ignore
-        title: JSON.parse(errorStringify)?.details,
+        title: JSON.parse(errorStringify)?.cause?.reason,
         description: data,
         status: 'error',
         duration: 5000,
@@ -182,7 +178,14 @@ export const RegistrationUi = () => {
         description: (
           <VStack>
             <Text maxW={'20ch'}>{data}</Text>
-            <Button colorScheme="pink" as="a" href={`${currentNetwork?.chainInfo?.blockExplorers?.default?.url}/tx/${result?.data?.transactionHash}`} target='_blank'>View in explorer</Button>
+            <Button
+              colorScheme="pink"
+              as="a"
+              href={`${currentNetwork?.chainInfo?.blockExplorers?.default?.url}/tx/${result?.data?.transactionHash}`}
+              target="_blank"
+            >
+              View in explorer
+            </Button>
           </VStack>
         ),
         status: 'success',
@@ -211,7 +214,14 @@ export const RegistrationUi = () => {
         description: (
           <VStack>
             <Text maxW={'20ch'}>{data}</Text>
-            <Button colorScheme="pink" as="a" href={`${currentNetwork?.chainInfo?.blockExplorers?.default?.url}/tx/${resultApprove?.data?.transactionHash}`} target='_blank'>View in explorer</Button>
+            <Button
+              colorScheme="pink"
+              as="a"
+              href={`${currentNetwork?.chainInfo?.blockExplorers?.default?.url}/tx/${resultApprove?.data?.transactionHash}`}
+              target="_blank"
+            >
+              View in explorer
+            </Button>
           </VStack>
         ),
         status: 'success',
@@ -296,7 +306,12 @@ export const RegistrationUi = () => {
               }}
               colorScheme="twitter"
               onClick={approve}
-              isLoading={statusApprove === 'pending' ? true : false}
+              isLoading={
+                resultApprove?.fetchStatus === 'fetching' &&
+                resultApprove?.status === 'pending'
+                  ? true
+                  : false
+              }
               // loadingText="Transaction in progress..."
               isDisabled={Number(referrerId) === 0}
             >
@@ -314,9 +329,13 @@ export const RegistrationUi = () => {
             }}
             colorScheme="pink"
             onClick={prepareTransaction}
-            isLoading={status === 'pending' ? true : false}
+            isLoading={
+              result?.fetchStatus === 'fetching' && result?.status === 'pending'
+                ? true
+                : false
+            }
             // loadingText="Transaction in progress..."
-            isDisabled={Number(referrerId) === 0 || !hasSufficientAllowance}
+            // isDisabled={Number(referrerId) === 0 || !hasSufficientAllowance}
           >
             Register
           </Button>

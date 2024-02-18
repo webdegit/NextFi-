@@ -15,11 +15,13 @@ import { useAccount } from 'wagmi';
 import { useGetUserAccount } from '../../../hooks/useReferralContract';
 
 export const UserIdDashboard = () => {
-  const {userId} = useParams();
- 
+  const { userId } = useParams();
+
   return (
     <VStack w="full">
-      <NavUserIdMobile userId={userId ?? 0}  />
+      <Hide above="md">
+        <NavUserIdMobile userId={userId ?? 0} />
+      </Hide>
       <Wrap w="full" py={5} px={5}>
         <Hide below="md">
           <NavUserIdDashboard userId={userId ?? 0} />
