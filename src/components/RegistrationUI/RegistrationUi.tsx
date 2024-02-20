@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FcGoodDecision } from 'react-icons/fc';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   useAccount,
   useBalance,
@@ -46,6 +46,7 @@ export const RegistrationUi = () => {
 
   const chainId = useChainId();
   const { address } = useAccount();
+  const navigateTo = useNavigate()
 
   const currentNetwork = supportedNetworkInfo[chainId];
   const { data, writeContractAsync, status, reset, error } = useWriteContract();
@@ -194,6 +195,7 @@ export const RegistrationUi = () => {
       });
 
       reset();
+      navigateTo("/user");
     } else if (result?.data?.status === 'reverted') {
       toast({
         title: 'Transaction Reverted.',
