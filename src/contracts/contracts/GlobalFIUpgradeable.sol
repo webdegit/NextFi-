@@ -289,7 +289,7 @@ contract GlobalFiUpgradeable is
         }
     }
 
-    function _upgradeIdToPool(address _tokenAddress) private ReentrancyGuard {
+    function _upgradeIdToPool(address _tokenAddress) private {
         for (uint8 i = 1; i < 20; ++i) {
             PoolStruct storage poolAccount = _mappingPools[i];
 
@@ -617,6 +617,7 @@ contract GlobalFiUpgradeable is
         external
         view
         returns (
+            address[] memory usersAddress,
             uint256 usersCount,
             uint256 idsCount,
             uint256 nonGlobalIdsCount,
@@ -624,6 +625,7 @@ contract GlobalFiUpgradeable is
             uint256 totalValueRegistered
         )
     {
+        usersAddress = _users;
         usersCount = _users.length;
         idsCount = _ids;
         nonGlobalIdsCount = _nonGlobalIds.length;

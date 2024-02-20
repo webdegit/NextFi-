@@ -28058,6 +28058,1134 @@
           }
         }
       }
+    },
+    "d69501a16fdeefca83aeeed871af64230a4309ada77272f2eaeaa3e2817f6463": {
+      "address": "0x5d639bF14C998A2246727f46041fe211662d5724",
+      "txHash": "0xe3a0c62ee224c259b4bf8f6fb44821c13b94eeb25ba06672044c2f22ca510c71",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_paused",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_bool",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:29"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:116"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "_users",
+            "offset": 0,
+            "slot": "251",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:95"
+          },
+          {
+            "label": "_ids",
+            "offset": 0,
+            "slot": "252",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:96"
+          },
+          {
+            "label": "_nonGlobalIds",
+            "offset": 0,
+            "slot": "253",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:97"
+          },
+          {
+            "label": "_levelRates",
+            "offset": 0,
+            "slot": "254",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:99"
+          },
+          {
+            "label": "_maxRefereeLimit",
+            "offset": 0,
+            "slot": "255",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:101"
+          },
+          {
+            "label": "_teamLevelsToCount",
+            "offset": 0,
+            "slot": "256",
+            "type": "t_uint8",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:102"
+          },
+          {
+            "label": "_registrationAmountInUSD",
+            "offset": 0,
+            "slot": "257",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:104"
+          },
+          {
+            "label": "_adminAddress",
+            "offset": 0,
+            "slot": "258",
+            "type": "t_address",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:106"
+          },
+          {
+            "label": "_taxBeneficiaryAddress",
+            "offset": 0,
+            "slot": "259",
+            "type": "t_address",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:107"
+          },
+          {
+            "label": "_taxPer",
+            "offset": 0,
+            "slot": "260",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:109"
+          },
+          {
+            "label": "_totalReferralPaid",
+            "offset": 0,
+            "slot": "261",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:111"
+          },
+          {
+            "label": "_totalValueRegistered",
+            "offset": 0,
+            "slot": "262",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:112"
+          },
+          {
+            "label": "_supportedTokensList",
+            "offset": 0,
+            "slot": "263",
+            "type": "t_array(t_struct(SupportedTokensStruct)1459_storage)dyn_storage",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:114"
+          },
+          {
+            "label": "_reentrancy",
+            "offset": 0,
+            "slot": "264",
+            "type": "t_bool",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:116"
+          },
+          {
+            "label": "_mappingAccounts",
+            "offset": 0,
+            "slot": "265",
+            "type": "t_mapping(t_address,t_struct(AccountStruct)1492_storage)",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:118"
+          },
+          {
+            "label": "_mappingIds",
+            "offset": 0,
+            "slot": "266",
+            "type": "t_mapping(t_uint256,t_struct(IdStruct)1527_storage)",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:119"
+          },
+          {
+            "label": "_mappingSupportedToken",
+            "offset": 0,
+            "slot": "267",
+            "type": "t_mapping(t_address,t_struct(SupportedTokensStruct)1459_storage)",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:120"
+          },
+          {
+            "label": "_mappingPools",
+            "offset": 0,
+            "slot": "268",
+            "type": "t_mapping(t_uint8,t_struct(PoolStruct)1543_storage)",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:121"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(RefereeAssignedStruct)1483_storage)dyn_storage": {
+            "label": "struct RefereeAssignedStruct[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(SupportedTokensStruct)1459_storage)dyn_storage": {
+            "label": "struct SupportedTokensStruct[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(TeamStruct)1464_storage)dyn_storage": {
+            "label": "struct TeamStruct[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_struct(AccountStruct)1492_storage)": {
+            "label": "mapping(address => struct AccountStruct)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(SupportedTokensStruct)1459_storage)": {
+            "label": "mapping(address => struct SupportedTokensStruct)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(IdStruct)1527_storage)": {
+            "label": "mapping(uint256 => struct IdStruct)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint8,t_struct(PoolStruct)1543_storage)": {
+            "label": "mapping(uint8 => struct PoolStruct)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(AccountStruct)1492_storage": {
+            "label": "struct AccountStruct",
+            "members": [
+              {
+                "label": "selfAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "ids",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "regeneratedIds",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(BusinessStruct)1471_storage": {
+            "label": "struct BusinessStruct",
+            "members": [
+              {
+                "label": "selfBusiness",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "directBusiness",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "teamBusiness",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(IdStruct)1527_storage": {
+            "label": "struct IdStruct",
+            "members": [
+              {
+                "label": "id",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "referrerId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "parentId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "refereeIds",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "refereesAssigned",
+                "type": "t_array(t_struct(RefereeAssignedStruct)1483_storage)dyn_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "team",
+                "type": "t_array(t_struct(TeamStruct)1464_storage)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "business",
+                "type": "t_struct(BusinessStruct)1471_storage",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "rewards",
+                "type": "t_struct(RewardsStruct)1478_storage",
+                "offset": 0,
+                "slot": "10"
+              },
+              {
+                "label": "isInPool",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "13"
+              },
+              {
+                "label": "isRegenerated",
+                "type": "t_bool",
+                "offset": 1,
+                "slot": "13"
+              },
+              {
+                "label": "regenratedIds",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "14"
+              },
+              {
+                "label": "regeneratedIdBy",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "15"
+              }
+            ],
+            "numberOfBytes": "512"
+          },
+          "t_struct(PoolStruct)1543_storage": {
+            "label": "struct PoolStruct",
+            "members": [
+              {
+                "label": "poolId",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "rewardToDistribute",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "minUserCounter",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "userCountToUpgrade",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "count",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "userIds",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "totalRewardDistributed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(RefereeAssignedStruct)1483_storage": {
+            "label": "struct RefereeAssignedStruct",
+            "members": [
+              {
+                "label": "refereeId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "assignedToid",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(RewardsStruct)1478_storage": {
+            "label": "struct RewardsStruct",
+            "members": [
+              {
+                "label": "referralRewards",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "spillOverRewards",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "globalRewards",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(SupportedTokensStruct)1459_storage": {
+            "label": "struct SupportedTokensStruct",
+            "members": [
+              {
+                "label": "contractAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "decimals",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "isStable",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "aggregatorAddress",
+                "type": "t_address",
+                "offset": 1,
+                "slot": "2"
+              },
+              {
+                "label": "isEnaled",
+                "type": "t_bool",
+                "offset": 21,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(TeamStruct)1464_storage": {
+            "label": "struct TeamStruct",
+            "members": [
+              {
+                "label": "teamId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "teamLevel",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "b60a5c4566ee3fce262a1a01c0c19442650f950b21e193bfe14608df68d17f18": {
+      "address": "0x56c7730d0B497D7454832Fd0661d882e73666fAB",
+      "txHash": "0x79320c7969fbadb6454ec64d9244c8a583d9eabd0b2083588e26caf6f5c87417",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_paused",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_bool",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:29"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:116"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "_users",
+            "offset": 0,
+            "slot": "251",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:95"
+          },
+          {
+            "label": "_ids",
+            "offset": 0,
+            "slot": "252",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:96"
+          },
+          {
+            "label": "_nonGlobalIds",
+            "offset": 0,
+            "slot": "253",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:97"
+          },
+          {
+            "label": "_levelRates",
+            "offset": 0,
+            "slot": "254",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:99"
+          },
+          {
+            "label": "_maxRefereeLimit",
+            "offset": 0,
+            "slot": "255",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:101"
+          },
+          {
+            "label": "_teamLevelsToCount",
+            "offset": 0,
+            "slot": "256",
+            "type": "t_uint8",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:102"
+          },
+          {
+            "label": "_registrationAmountInUSD",
+            "offset": 0,
+            "slot": "257",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:104"
+          },
+          {
+            "label": "_adminAddress",
+            "offset": 0,
+            "slot": "258",
+            "type": "t_address",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:106"
+          },
+          {
+            "label": "_taxBeneficiaryAddress",
+            "offset": 0,
+            "slot": "259",
+            "type": "t_address",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:107"
+          },
+          {
+            "label": "_taxPer",
+            "offset": 0,
+            "slot": "260",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:109"
+          },
+          {
+            "label": "_totalReferralPaid",
+            "offset": 0,
+            "slot": "261",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:111"
+          },
+          {
+            "label": "_totalValueRegistered",
+            "offset": 0,
+            "slot": "262",
+            "type": "t_uint256",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:112"
+          },
+          {
+            "label": "_supportedTokensList",
+            "offset": 0,
+            "slot": "263",
+            "type": "t_array(t_struct(SupportedTokensStruct)1459_storage)dyn_storage",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:114"
+          },
+          {
+            "label": "_reentrancy",
+            "offset": 0,
+            "slot": "264",
+            "type": "t_bool",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:116"
+          },
+          {
+            "label": "_mappingAccounts",
+            "offset": 0,
+            "slot": "265",
+            "type": "t_mapping(t_address,t_struct(AccountStruct)1492_storage)",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:118"
+          },
+          {
+            "label": "_mappingIds",
+            "offset": 0,
+            "slot": "266",
+            "type": "t_mapping(t_uint256,t_struct(IdStruct)1527_storage)",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:119"
+          },
+          {
+            "label": "_mappingSupportedToken",
+            "offset": 0,
+            "slot": "267",
+            "type": "t_mapping(t_address,t_struct(SupportedTokensStruct)1459_storage)",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:120"
+          },
+          {
+            "label": "_mappingPools",
+            "offset": 0,
+            "slot": "268",
+            "type": "t_mapping(t_uint8,t_struct(PoolStruct)1543_storage)",
+            "contract": "GlobalFiUpgradeable",
+            "src": "contracts/GlobalFIUpgradeable.sol:121"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(RefereeAssignedStruct)1483_storage)dyn_storage": {
+            "label": "struct RefereeAssignedStruct[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(SupportedTokensStruct)1459_storage)dyn_storage": {
+            "label": "struct SupportedTokensStruct[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(TeamStruct)1464_storage)dyn_storage": {
+            "label": "struct TeamStruct[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_struct(AccountStruct)1492_storage)": {
+            "label": "mapping(address => struct AccountStruct)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(SupportedTokensStruct)1459_storage)": {
+            "label": "mapping(address => struct SupportedTokensStruct)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(IdStruct)1527_storage)": {
+            "label": "mapping(uint256 => struct IdStruct)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint8,t_struct(PoolStruct)1543_storage)": {
+            "label": "mapping(uint8 => struct PoolStruct)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(AccountStruct)1492_storage": {
+            "label": "struct AccountStruct",
+            "members": [
+              {
+                "label": "selfAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "ids",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "regeneratedIds",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(BusinessStruct)1471_storage": {
+            "label": "struct BusinessStruct",
+            "members": [
+              {
+                "label": "selfBusiness",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "directBusiness",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "teamBusiness",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(IdStruct)1527_storage": {
+            "label": "struct IdStruct",
+            "members": [
+              {
+                "label": "id",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "referrerId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "parentId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "refereeIds",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "refereesAssigned",
+                "type": "t_array(t_struct(RefereeAssignedStruct)1483_storage)dyn_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "team",
+                "type": "t_array(t_struct(TeamStruct)1464_storage)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "business",
+                "type": "t_struct(BusinessStruct)1471_storage",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "rewards",
+                "type": "t_struct(RewardsStruct)1478_storage",
+                "offset": 0,
+                "slot": "10"
+              },
+              {
+                "label": "isInPool",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "13"
+              },
+              {
+                "label": "isRegenerated",
+                "type": "t_bool",
+                "offset": 1,
+                "slot": "13"
+              },
+              {
+                "label": "regenratedIds",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "14"
+              },
+              {
+                "label": "regeneratedIdBy",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "15"
+              }
+            ],
+            "numberOfBytes": "512"
+          },
+          "t_struct(PoolStruct)1543_storage": {
+            "label": "struct PoolStruct",
+            "members": [
+              {
+                "label": "poolId",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "rewardToDistribute",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "minUserCounter",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "userCountToUpgrade",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "count",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "userIds",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "totalRewardDistributed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(RefereeAssignedStruct)1483_storage": {
+            "label": "struct RefereeAssignedStruct",
+            "members": [
+              {
+                "label": "refereeId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "assignedToid",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(RewardsStruct)1478_storage": {
+            "label": "struct RewardsStruct",
+            "members": [
+              {
+                "label": "referralRewards",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "spillOverRewards",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "globalRewards",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(SupportedTokensStruct)1459_storage": {
+            "label": "struct SupportedTokensStruct",
+            "members": [
+              {
+                "label": "contractAddress",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "decimals",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "isStable",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "aggregatorAddress",
+                "type": "t_address",
+                "offset": 1,
+                "slot": "2"
+              },
+              {
+                "label": "isEnaled",
+                "type": "t_bool",
+                "offset": 21,
+                "slot": "2"
+              }
+            ],
+            "numberOfBytes": "96"
+          },
+          "t_struct(TeamStruct)1464_storage": {
+            "label": "struct TeamStruct",
+            "members": [
+              {
+                "label": "teamId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "teamLevel",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
     }
   }
 }
