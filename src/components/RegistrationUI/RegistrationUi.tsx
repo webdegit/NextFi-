@@ -205,7 +205,7 @@ export const RegistrationUi = () => {
 
       reset();
     }
-  });
+  }, [toast, data, result, reset, currentNetwork]);
 
   useEffect(() => {
     if (resultApprove?.data?.status === 'success') {
@@ -239,7 +239,7 @@ export const RegistrationUi = () => {
         isClosable: true,
       });
     }
-  });
+  }, [toast, data, result, reset, currentNetwork, resultApprove, resetApprove]);
 
   return (
     <VStack>
