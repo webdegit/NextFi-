@@ -98,7 +98,7 @@ export const UserIdDisplay = () => {
                   );
                 })}
               </Wrap>
-              <Divider></Divider>
+              {/* <Divider></Divider>
               <Heading color="green.500">Regenerated User Ids</Heading>
               <Text>Please select an id to go to dashboard.</Text>
               <Wrap justify="center" align="center">
@@ -107,7 +107,7 @@ export const UserIdDisplay = () => {
                     <UserIdCard userId={Number(userId)} key={key}></UserIdCard>
                   );
                 })}
-              </Wrap>
+              </Wrap> */}
             </VStack>
           ) : (
             <InactiveAccountComponent></InactiveAccountComponent>
