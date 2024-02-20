@@ -46,7 +46,7 @@ export const RegistrationUi = () => {
 
   const chainId = useChainId();
   const { address } = useAccount();
-  const navigateTo = useNavigate()
+  const navigateTo = useNavigate();
 
   const currentNetwork = supportedNetworkInfo[chainId];
   const { data, writeContractAsync, status, reset, error } = useWriteContract();
@@ -161,8 +161,9 @@ export const RegistrationUi = () => {
 
       console.log('Send Transaction Error', JSON.parse(errorStringify));
 
+      // @ts-ignore
+
       toast({
-        // @ts-ignore
         title: JSON.parse(errorStringify)?.cause?.reason,
         description: data,
         status: 'error',
@@ -190,24 +191,24 @@ export const RegistrationUi = () => {
           </VStack>
         ),
         status: 'success',
-        duration: 500000,
+        duration: 2000,
         isClosable: true,
       });
 
       reset();
-      navigateTo("/user");
+      navigateTo('/user');
     } else if (result?.data?.status === 'reverted') {
       toast({
         title: 'Transaction Reverted.',
         description: <Text maxW={'20ch'}>{data}</Text>,
         status: 'error',
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
       });
 
       reset();
     }
-  }, [toast, data, result, reset, currentNetwork]);
+  }, [toast, data, result, reset, currentNetwork, navigateTo]);
 
   useEffect(() => {
     if (resultApprove?.data?.status === 'success') {
@@ -227,7 +228,7 @@ export const RegistrationUi = () => {
           </VStack>
         ),
         status: 'success',
-        duration: 500000,
+        duration: 1000,
         isClosable: true,
       });
 
