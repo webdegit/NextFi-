@@ -1,6 +1,6 @@
 import { RxDashboard } from 'react-icons/rx';
 import { FaArrowsDownToPeople, FaIdCardClip, FaShop } from 'react-icons/fa6';
-import { GiReceiveMoney } from 'react-icons/gi';
+import { GiEntryDoor, GiReceiveMoney } from 'react-icons/gi';
 import { AiFillHome } from 'react-icons/ai';
 import { MdPool, MdSpaceDashboard } from 'react-icons/md';
 
@@ -59,11 +59,11 @@ export const navUserIdDashboardObjectFunction = (userId: string | number) => {
       icon: MdSpaceDashboard,
       to: `/user/userIdDashboard/${userId}/dashboard`,
     },
-    {
-      heading: 'Business',
-      icon: FaShop,
-      to: `/user/userIdDashboard/${userId}/business`,
-    },
+    // {
+    //   heading: 'Business',
+    //   icon: FaShop,
+    //   to: `/user/userIdDashboard/${userId}/business`,
+    // },
     {
       heading: 'Pool',
       icon: MdPool,
@@ -74,9 +74,14 @@ export const navUserIdDashboardObjectFunction = (userId: string | number) => {
       icon: FaArrowsDownToPeople,
       to: `/user/userIdDashboard/${userId}/teams`,
     },
+    // {
+    //   heading: 'Rewards',
+    //   icon: GiReceiveMoney,
+    //   to: `/user/userIdDashboard/${userId}/rewards`,
+    // },
     {
-      heading: 'Rewards',
-      icon: GiReceiveMoney,
+      heading: 'Re-Entries',
+      icon: GiEntryDoor,
       to: `/user/userIdDashboard/${userId}/rewards`,
     },
   ];
