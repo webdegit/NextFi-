@@ -1,5 +1,5 @@
 import { RxDashboard } from 'react-icons/rx';
-import { FaArrowsDownToPeople, FaIdCardClip, FaShop } from 'react-icons/fa6';
+import { FaArrowRightArrowLeft, FaArrowsDownToPeople, FaIdCardClip, FaShop } from 'react-icons/fa6';
 import { GiEntryDoor, GiReceiveMoney } from 'react-icons/gi';
 import { AiFillHome } from 'react-icons/ai';
 import { MdPool, MdSpaceDashboard } from 'react-icons/md';
@@ -82,6 +82,11 @@ export const navUserIdDashboardObjectFunction = (userId: string | number) => {
     {
       heading: 'Re-Entries',
       icon: GiEntryDoor,
+      to: `/user/userIdDashboard/${userId}/rewards`,
+    },
+    {
+      heading: 'Transactions',
+      icon: FaArrowRightArrowLeft,
       to: `/user/userIdDashboard/${userId}/rewards`,
     },
   ];
