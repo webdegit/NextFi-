@@ -34,6 +34,7 @@ import { USDT } from '../../constants/ContractAddress';
 import { erc20Abi, parseEther, parseUnits } from 'viem';
 import { useGetEUSDTAllowance } from '../../hooks/useERC20Hooks';
 import { weiToDecimals } from '../../utils/weiToDecimals';
+import { GiConsoleController } from 'react-icons/gi';
 
 export const RegistrationUi = () => {
   const { referrerId } = useParams();
@@ -79,12 +80,14 @@ export const RegistrationUi = () => {
   const hasSufficientAllowance =
     weiToDecimals(userUSDTAllowance?.data) >= MinContribution ? true : false;
 
+  console.log("User Allowance", userUSDTAllowance?.data, "Has Sufficient Allowance", hasSufficientAllowance);
+
   const handleReferrerInput = (e: any) => {
     setUserInput({
       referrerId: e.target.value,
     });
 
-    console.log('Usser Referrer Input', userInput?.referrerId);
+    console.log('User Referrer Input', userInput?.referrerId);
   };
 
   const prepareTransaction = () => {
