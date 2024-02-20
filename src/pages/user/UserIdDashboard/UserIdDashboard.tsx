@@ -10,7 +10,6 @@ import { NavUserIdMobile } from '../../../components/Nav/NavUserIdDashboard/NavU
 
 export const UserIdDashboard = () => {
   const { userId } = useParams();
-
   return (
     <VStack w="full">
       <Hide above="md">

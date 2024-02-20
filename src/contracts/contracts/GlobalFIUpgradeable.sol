@@ -400,7 +400,7 @@ contract GlobalFiUpgradeable is
         if (msg.sender != owner()) {
             require(
                 _firstReferrerIdAccount.id != 0,
-                "_addReferrer(): Referre Id is not activated."
+                "_addReferrer(): Referre Id is not activated or zero."
             );
         }
 
@@ -467,75 +467,92 @@ contract GlobalFiUpgradeable is
     function _payDirectReferral(
         IdStruct storage _userIdAccount,
         uint256 _valueInWei,
-        bool _isSpillOver,
         address _tokenAddress
     ) private {
-        uint256 userId = _userIdAccount.id;
+        // uint256 userId = _userIdAccount.id;
+        _userIdAccount.business.selfBusiness += _valueInWei;
         IdStruct storage referrerIdAccount;
 
-        if (_isSpillOver) {
-            referrerIdAccount = _mappingIds[_userIdAccount.parentId];
-        } else {
-            referrerIdAccount = _mappingIds[_userIdAccount.referrerId];
-        }
+        referrerIdAccount = _mappingIds[_userIdAccount.parentId];
+
+        require(referrerIdAccount.owner != address(0));
 
         referrerIdAccount.business.directBusiness += _valueInWei;
+
         emit DirectBusinessUpdated(
             referrerIdAccount.id,
             _userIdAccount.id,
             _valueInWei
         );
 
-        uint256[] memory levelRates = _levelRates;
-        uint256 referralPaid;
+        // uint256[] memory levelRates = _levelRates;
 
-        for (uint256 i; i < levelRates.length; ++i) {
-            referrerIdAccount = _mappingIds[_userIdAccount.referrerId];
+        uint256 referralValue = (_valueInWei * _levelRates[0]) / 100;
 
-            if (i == 0) {
-                // _pushIdToPool(referrerIdAccount);
-            }
+        IERC20Upgradeable(_tokenAddress).transfer(
+            referrerIdAccount.owner,
+            _weiToTokens(referralValue, _tokenAddress)
+        );
 
-            uint256 referralValue = (_valueInWei * levelRates[i]) / 100;
+        emit ReferralDistributed(
+            referrerIdAccount.id,
+            _userIdAccount.id,
+            referralValue,
+            1
+        );
 
-            IERC20Upgradeable(_tokenAddress).transfer(
-                referrerIdAccount.owner,
-                _weiToTokens(referralValue, _tokenAddress)
-            );
+        referrerIdAccount.rewards.referralRewards += referralValue;
 
-            emit ReferralDistributed(
-                referrerIdAccount.id,
-                userId,
-                referralValue,
-                i + 1
-            );
-
-            referralPaid += referralValue;
-
-            referrerIdAccount.rewards.referralRewards += referralValue;
-
-            referrerIdAccount.business.teamBusiness += _valueInWei;
-
-            emit TeamBusinessUpdated(
-                referrerIdAccount.id,
-                userId,
-                _valueInWei,
-                i + 1
-            );
-
-            _userIdAccount = referrerIdAccount;
-        }
+        _totalReferralPaid += referralValue;
 
         // _upgradeIdToPool(_tokenAddress);
 
-        _totalReferralPaid += referralPaid;
+        // for (uint256 i; i < levelRates.length; ++i) {
+        //     referrerIdAccount = _mappingIds[_userIdAccount.referrerId];
+
+        //     if (i == 0) {
+        //         // _pushIdToPool(referrerIdAccount);
+        //     }
+
+        //     uint256 referralValue = (_valueInWei * levelRates[i]) / 100;
+
+        //     IERC20Upgradeable(_tokenAddress).transfer(
+        //         referrerIdAccount.owner,
+        //         _weiToTokens(referralValue, _tokenAddress)
+        //     );
+
+        //     emit ReferralDistributed(
+        //         referrerIdAccount.id,
+        //         userId,
+        //         referralValue,
+        //         i + 1
+        //     );
+
+        //     referralPaid += referralValue;
+
+        //     referrerIdAccount.rewards.referralRewards += referralValue;
+
+        //     referrerIdAccount.business.teamBusiness += _valueInWei;
+
+        //     emit TeamBusinessUpdated(
+        //         referrerIdAccount.id,
+        //         userId,
+        //         _valueInWei,
+        //         i + 1
+        //     );
+
+        //     _userIdAccount = referrerIdAccount;
+        // }
+
+        // _upgradeIdToPool(_tokenAddress);
+
+        // _totalReferralPaid += referralPaid;
     }
 
     function _register(
         IdStruct storage _userIdAccount,
         uint256 _valueInWei
     ) private {
-        _userIdAccount.business.selfBusiness += _valueInWei;
         emit SelfBusinessUpdated(_userIdAccount.id, _valueInWei);
     }
 
@@ -575,16 +592,13 @@ contract GlobalFiUpgradeable is
 
         _pushIdToNonGlobal(userIdAccount);
 
-        bool isSpillOver = _addReferrer(referrerIdAccount, userIdAccount);
+        _addReferrer(referrerIdAccount, userIdAccount);
 
         _register(userIdAccount, valueInWei);
 
-        _payDirectReferral(
-            userIdAccount,
-            valueInWei,
-            isSpillOver,
-            _tokenAddress
-        );
+        _payDirectReferral(userIdAccount, valueInWei, _tokenAddress);
+
+        _upgradeIdToPool(_tokenAddress);
 
         _totalValueRegistered += valueInWei;
     }
