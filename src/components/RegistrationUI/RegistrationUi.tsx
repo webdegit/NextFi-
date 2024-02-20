@@ -80,7 +80,14 @@ export const RegistrationUi = () => {
   const hasSufficientAllowance =
     weiToDecimals(userUSDTAllowance?.data) >= MinContribution ? true : false;
 
-  console.log("User Allowance", userUSDTAllowance?.data, "Has Sufficient Allowance", hasSufficientAllowance);
+  const [activateRegisterButton, setActivateRegisterButton] = useState(false);
+
+  console.log(
+    'User Allowance',
+    userUSDTAllowance?.data,
+    'Has Sufficient Allowance',
+    hasSufficientAllowance
+  );
 
   const handleReferrerInput = (e: any) => {
     setUserInput({
@@ -194,7 +201,7 @@ export const RegistrationUi = () => {
           </VStack>
         ),
         status: 'success',
-        duration: 2000,
+        duration: 5000,
         isClosable: true,
       });
 
@@ -205,7 +212,7 @@ export const RegistrationUi = () => {
         title: 'Transaction Reverted.',
         description: <Text maxW={'20ch'}>{data}</Text>,
         status: 'error',
-        duration: 2000,
+        duration: 5000,
         isClosable: true,
       });
 
@@ -231,11 +238,12 @@ export const RegistrationUi = () => {
           </VStack>
         ),
         status: 'success',
-        duration: 1000,
+        duration: 5000,
         isClosable: true,
       });
 
       resetApprove();
+      setActivateRegisterButton(true);
     } else if (resultApprove?.data?.status === 'reverted') {
       toast({
         title: 'Transaction Reverted.',
@@ -301,7 +309,7 @@ export const RegistrationUi = () => {
           </Alert>
         )}
         <HStack w="full">
-          {!hasSufficientAllowance && (
+          {!activateRegisterButton && !hasSufficientAllowance && (
             <Button
               w="full"
               h={14}

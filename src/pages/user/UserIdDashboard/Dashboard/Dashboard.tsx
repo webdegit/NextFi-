@@ -22,6 +22,7 @@ import {
 import { weiToDecimals } from '../../../../utils/weiToDecimals';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { GiEntryDoor } from 'react-icons/gi';
 
 export const Dashboard = () => {
   const { address } = useAccount();
@@ -67,23 +68,23 @@ export const Dashboard = () => {
           }
         ></DashboardDataContainer>
         <DashboardDataContainer
-          heading="Rewards"
-          icon={FaHandHoldingHeart}
+          heading="Pool Status"
+          icon={MdPool}
           children={
             <VStack spacing={5}>
               <BalancesContainer
                 // image={`${currentNetwork?.icon}`}
-                icon={HiUserPlus}
-                heading="Referral"
-                balance={weiToDecimals(userIdAccount?.rewards?.referralRewards)}
-                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+                icon={MdPool}
+                heading="Magic Pool"
+                balance={2}
+                // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
               />
               <BalancesContainer
                 // image={`/currencyLogos/usdt.svg`}
-                icon={MdPool}
-                heading="Pool"
-                balance={weiToDecimals(userIdAccount?.rewards?.globalRewards)}
-                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+                icon={GiEntryDoor}
+                heading="Re-Entries"
+                balance={3}
+                // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
               />
               {/* <BalancesContainer
                 // image={`/currencyLogos/usdt.svg`}
@@ -95,35 +96,7 @@ export const Dashboard = () => {
             </VStack>
           }
         ></DashboardDataContainer>
-        <DashboardDataContainer
-          heading="Business"
-          icon={FaShop}
-          children={
-            <VStack spacing={5}>
-              <BalancesContainer
-                // image={`${currentNetwork?.icon}`}
-                icon={FaUser}
-                heading="Self"
-                balance={weiToDecimals(userIdAccount?.business?.selfBusiness)}
-                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-              />
-              <BalancesContainer
-                // image={`/currencyLogos/usdt.svg`}
-                icon={FaUserFriends}
-                heading="Direct"
-                balance={weiToDecimals(userIdAccount?.business?.directBusiness)}
-                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-              />
-              <BalancesContainer
-                // image={`/currencyLogos/usdt.svg`}
-                icon={FaUserGroup}
-                heading="Team"
-                balance={weiToDecimals(userIdAccount?.business?.teamBusiness)}
-                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-              />
-            </VStack>
-          }
-        ></DashboardDataContainer>
+        
         <DashboardDataContainer
           heading="Team"
           icon={HiUserGroup}
@@ -141,6 +114,49 @@ export const Dashboard = () => {
                 heading="Team"
                 balance={userIdAccount?.team?.length}
               />
+            </VStack>
+          }
+        ></DashboardDataContainer>
+        <DashboardDataContainer
+          heading="Business"
+          icon={FaShop}
+          children={
+            <VStack spacing={5}>
+              {/* <BalancesContainer
+                // image={`${currentNetwork?.icon}`}
+                icon={FaUser}
+                heading="Self Business"
+                balance={weiToDecimals(userIdAccount?.business?.selfBusiness)}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              /> */}
+              <BalancesContainer
+                // image={`/currencyLogos/usdt.svg`}
+                icon={FaUserFriends}
+                heading="Direct Business"
+                balance={weiToDecimals(userIdAccount?.business?.directBusiness)}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              />
+              <BalancesContainer
+                // image={`/currencyLogos/usdt.svg`}
+                icon={FaUserFriends}
+                heading="Referral Income"
+                balance={weiToDecimals(userIdAccount?.business?.directBusiness)}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              />
+              <BalancesContainer
+                // image={`/currencyLogos/usdt.svg`}
+                icon={FaUserFriends}
+                heading="Re-Entry Income"
+                balance={weiToDecimals(userIdAccount?.business?.directBusiness)}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              />
+              {/* <BalancesContainer
+                // image={`/currencyLogos/usdt.svg`}
+                icon={FaUserGroup}
+                heading="Team"
+                balance={weiToDecimals(userIdAccount?.business?.teamBusiness)}
+                balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+              /> */}
             </VStack>
           }
         ></DashboardDataContainer>
