@@ -22,6 +22,8 @@ import {
   useGetIdAccount,
 } from '../hooks/useReferralContract';
 import { Link } from 'react-router-dom';
+import { GiTakeMyMoney } from 'react-icons/gi';
+import { weiToDecimals } from '../utils/weiToDecimals';
 
 export const UserTeamCard = ({
   heading,
@@ -58,10 +60,13 @@ export const UserTeamCard = ({
           />
           <BalancesContainer
             // image={`${currentNetwork?.icon}`}
-            icon={HiUserGroup}
-            heading="Team"
-            balance={userIdAccount?.team?.length}
-            // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+            icon={GiTakeMyMoney}
+            heading="Total Income"
+            balance={weiToDecimals(
+              Number(userIdAccount?.rewards?.globalRewards) +
+                Number(userIdAccount?.rewards?.referralRewards)
+            )}
+            balaceCurrencyImage={`/currencyLogos/usdt.svg`}
           />
           <Button
             borderRadius={'full'}
