@@ -49,9 +49,10 @@ struct RewardsStruct {
     uint256 globalRewards;
 }
 
-struct RefereeAssignedStruct {
+struct RefereeStruct {
     uint256 refereeId;
-    uint256 assignedToid;
+    uint256 assignedTo;
+    uint256 assignedFrom;
 }
 
 struct AccountStruct {
@@ -65,8 +66,8 @@ struct IdStruct {
     address owner;
     uint256 referrerId;
     uint256 parentId;
-    uint256[] refereeIds;
-    RefereeAssignedStruct[] refereesAssigned;
+    RefereeStruct[] refereeIds;
+    // RefereeAssignedStruct[] refereesAssigned;
     TeamStruct[] team;
     BusinessStruct business;
     RewardsStruct rewards;
@@ -95,6 +96,7 @@ contract GlobalFiUpgradeable is
     address[] private _users;
     uint256 private _ids;
     uint256[] private _nonGlobalIds;
+    uint256 private _nonGlobalIdIncrement;
 
     uint256[] private _levelRates;
 
@@ -417,7 +419,9 @@ contract GlobalFiUpgradeable is
         if (!_checkIfMaxRefereeLimit(_firstReferrerIdAccount)) {
             _userIdAccount.referrerId = _firstReferrerIdAccount.id;
             _userIdAccount.parentId = _firstReferrerIdAccount.id;
-            _firstReferrerIdAccount.refereeIds.push(userId);
+            _firstReferrerIdAccount.refereeIds.push(
+                RefereeStruct(userId, 0, 0)
+            );
             emit ReferrerUpdated(_firstReferrerIdAccount.id, userId);
         } else {
             require(
@@ -425,20 +429,32 @@ contract GlobalFiUpgradeable is
                 "_addReferrer(): Global ids are over."
             );
 
-            IdStruct storage nonGlobalIdAccount = _mappingIds[_nonGlobalIds[0]];
+            IdStruct storage nonGlobalIdAccount = _mappingIds[
+                _nonGlobalIds[_nonGlobalIdIncrement]
+            ];
+            _nonGlobalIdIncrement++;
             _userIdAccount.referrerId = nonGlobalIdAccount.id;
             _userIdAccount.parentId = _firstReferrerIdAccount.id;
-            _firstReferrerIdAccount.refereesAssigned.push(
-                RefereeAssignedStruct(userId, nonGlobalIdAccount.id)
+            _firstReferrerIdAccount.refereeIds.push(
+                RefereeStruct(userId, nonGlobalIdAccount.id, 0)
             );
+            nonGlobalIdAccount.refereeIds.push(
+                RefereeStruct(
+                    userId,
+                    nonGlobalIdAccount.id,
+                    _firstReferrerIdAccount.id
+                )
+            );
+            // _firstReferrerIdAccount.refereesAssigned.push(
+            //     RefereeAssignedStruct(userId, nonGlobalIdAccount.id)
+            // );
 
             emit RefereeAssigned(
                 _firstReferrerIdAccount.id,
                 nonGlobalIdAccount.id,
                 userId
             );
-
-            nonGlobalIdAccount.refereeIds.push(userId);
+            
             emit ReferrerUpdated(nonGlobalIdAccount.id, userId);
 
             _removeIdFromNonGlobal(nonGlobalIdAccount);
