@@ -432,7 +432,7 @@ contract GlobalFiUpgradeable is
             IdStruct storage nonGlobalIdAccount = _mappingIds[
                 _nonGlobalIds[_nonGlobalIdIncrement]
             ];
-            _nonGlobalIdIncrement++;
+         
             _userIdAccount.referrerId = nonGlobalIdAccount.id;
             _userIdAccount.parentId = _firstReferrerIdAccount.id;
             _firstReferrerIdAccount.refereeIds.push(
@@ -461,6 +461,7 @@ contract GlobalFiUpgradeable is
 
             if (_checkIfMaxRefereeLimit(nonGlobalIdAccount)) {
                 _removeIdFromNonGlobal(nonGlobalIdAccount);
+                _nonGlobalIdIncrement++;
             }
 
             isSpillOver = true;
