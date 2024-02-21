@@ -16,7 +16,7 @@ async function main() {
     'GlobalFiUpgradeable'
   );
   const mc = await upgrades.upgradeProxy(
-    '0x6a255C2AbcA1574eCda56e539B1b153432264C56',
+    '0xE5579B5Fd2856a67F1D6679A6418Fbe1225d6a14',
     ContractFactory,
     { gasPrice: gas }
   );

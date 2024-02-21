@@ -1,30 +1,20 @@
 import {
   Button,
-  Divider,
-  HStack,
-  Heading,
-  Icon,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
-import React from 'react';
-import { DashboardDataContainer } from './Dashboard/DashboardDataContainer';
-import { FaHandHoldingHeart, FaHospitalUser } from 'react-icons/fa';
-import { BalancesContainer } from './Dashboard/BalancesContainer';
-import { HiUserPlus } from 'react-icons/hi2';
-import { TiUserAdd } from 'react-icons/ti';
-import { MdPool } from 'react-icons/md';
-import { ArrowDownIcon } from '@chakra-ui/icons';
 import { IconType } from 'react-icons';
 import { FaClipboardUser } from 'react-icons/fa6';
-import { HiUserGroup } from 'react-icons/hi';
+import { GiTakeMyMoney } from 'react-icons/gi';
+import { HiUserPlus } from 'react-icons/hi2';
+import { Link } from 'react-router-dom';
 import {
   RefereeType,
   UserIdAccountType,
   useGetIdAccount,
 } from '../hooks/useReferralContract';
-import { Link } from 'react-router-dom';
-import { GiTakeMyMoney } from 'react-icons/gi';
 import { weiToDecimals } from '../utils/weiToDecimals';
+import { BalancesContainer } from './Dashboard/BalancesContainer';
+import { DashboardDataContainer } from './Dashboard/DashboardDataContainer';
 
 export const UserTeamCard = ({
   heading,
@@ -71,13 +61,23 @@ export const UserTeamCard = ({
             )}
             balaceCurrencyImage={`/currencyLogos/usdt.svg`}
           />
-          
+
           {Number(spillOver?.assignedFrom) > 0 && (
             <BalancesContainer
               // image={`${currentNetwork?.icon}`}
               icon={GiTakeMyMoney}
-              heading="Spill Over To"
+              heading="Spill Over From"
               balance={Number(spillOver?.assignedFrom)}
+              // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+            />
+          )}
+
+          {Number(spillOver?.assignedTo) > 0 && (
+            <BalancesContainer
+              // image={`${currentNetwork?.icon}`}
+              icon={GiTakeMyMoney}
+              heading="Spill Over To"
+              balance={Number(spillOver?.assignedTo)}
               // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
             />
           )}

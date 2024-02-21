@@ -388,7 +388,7 @@ contract GlobalFiUpgradeable is
         IdStruct memory _idAccount
     ) private view returns (bool isLimitReached) {
         // Check if the number of referees is equal to the maximum referee limit.
-        if (_idAccount.refereeIds.length > _maxRefereeLimit - 1) {
+        if (_idAccount.refereeIds.length >= _maxRefereeLimit) {
             // If the limit is reached, set the boolean to true.
             isLimitReached = true;
         }
@@ -416,9 +416,10 @@ contract GlobalFiUpgradeable is
             "_addReferrer(): User referrer already set."
         );
 
+        _userIdAccount.parentId = _firstReferrerIdAccount.id;
+
         if (!_checkIfMaxRefereeLimit(_firstReferrerIdAccount)) {
             _userIdAccount.referrerId = _firstReferrerIdAccount.id;
-            _userIdAccount.parentId = _firstReferrerIdAccount.id;
             _firstReferrerIdAccount.refereeIds.push(
                 RefereeStruct(userId, 0, 0)
             );
@@ -432,19 +433,14 @@ contract GlobalFiUpgradeable is
             IdStruct storage nonGlobalIdAccount = _mappingIds[
                 _nonGlobalIds[_nonGlobalIdIncrement]
             ];
-         
+
             _userIdAccount.referrerId = nonGlobalIdAccount.id;
-            _userIdAccount.parentId = _firstReferrerIdAccount.id;
             _firstReferrerIdAccount.refereeIds.push(
                 RefereeStruct(userId, nonGlobalIdAccount.id, 0)
             );
 
             nonGlobalIdAccount.refereeIds.push(
-                RefereeStruct(
-                    userId,
-                    nonGlobalIdAccount.id,
-                    _firstReferrerIdAccount.id
-                )
+                RefereeStruct(userId, 0, _firstReferrerIdAccount.id)
             );
 
             // _firstReferrerIdAccount.refereesAssigned.push(
@@ -460,7 +456,6 @@ contract GlobalFiUpgradeable is
             emit ReferrerUpdated(nonGlobalIdAccount.id, userId);
 
             if (_checkIfMaxRefereeLimit(nonGlobalIdAccount)) {
-                _removeIdFromNonGlobal(nonGlobalIdAccount);
                 _nonGlobalIdIncrement++;
             }
         }
