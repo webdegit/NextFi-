@@ -140,14 +140,14 @@ export const Dashboard = () => {
                 // image={`/currencyLogos/usdt.svg`}
                 icon={FaUserFriends}
                 heading="Referral Income"
-                balance={weiToDecimals(userIdAccount?.business?.directBusiness)}
+                balance={weiToDecimals(userIdAccount?.rewards?.referralRewards)}
                 balaceCurrencyImage={`/currencyLogos/usdt.svg`}
               />
               <BalancesContainer
                 // image={`/currencyLogos/usdt.svg`}
                 icon={FaUserFriends}
                 heading="Re-Entry Income"
-                balance={weiToDecimals(userIdAccount?.business?.directBusiness)}
+                balance={weiToDecimals(userIdAccount?.rewards?.globalRewards)}
                 balaceCurrencyImage={`/currencyLogos/usdt.svg`}
               />
               {/* <BalancesContainer
