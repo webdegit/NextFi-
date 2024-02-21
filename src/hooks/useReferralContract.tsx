@@ -2,10 +2,7 @@ import { useChainId, useReadContract } from 'wagmi';
 import ReferralContractABI from '../contracts/artifacts/contracts/GlobalFIUpgradeable.sol/GlobalFiUpgradeable.json';
 import { supportedNetworkInfo } from '../constants/Config';
 
-export const useReadContractHook = (
-  functionName: string,
-  args: any[],
-) => {
+export const useReadContractHook = (functionName: string, args: any[]) => {
   const chainId = useChainId();
   const currentNetwork = supportedNetworkInfo[chainId];
   // @ts-ignore
@@ -14,7 +11,7 @@ export const useReadContractHook = (
     address: currentNetwork?.referralContract,
     functionName: functionName,
     args: args ?? [],
-    blockTag: "latest",
+    blockTag: 'latest',
   });
   return result;
 };
@@ -25,23 +22,31 @@ export type UserTeamType = {
 };
 
 export type UserIdAccountType = {
+  id: bigint;
+  owner: `0x${string}`;
+  referrerId: bigint;
+  parentId: bigint;
+  refereeIds: bigint[];
+  refereesAssigned: {
+    refereeId: bigint;
+    assignedToid: bigint;
+  }[];
+  team: UserTeamType[];
   business: {
     directBusiness: bigint;
     selfBusiness: bigint;
     teamBusiness: bigint;
   };
-  id: bigint;
-  isInPool: bigint;
-  owner: `0x${string}`;
-  refereeIds: bigint[];
-  refereesAssigned: bigint[];
-  referrerId: bigint;
   rewards: {
     globalRewards: bigint;
     referralRewards: bigint;
     spillOverRewards: bigint;
   };
-  team: UserTeamType[];
+
+  isInPool: boolean;
+  isRegenerated: boolean;
+  regenratedIds: bigint[];
+  regeneratedIdBy: bigint;
 };
 
 export type UserAccountType = {

@@ -1,6 +1,7 @@
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import {
   Divider,
+  HStack,
   Heading,
   Icon,
   Spinner,
@@ -11,7 +12,7 @@ import {
   Thead,
   Tr,
   VStack,
-  Wrap
+  Wrap,
 } from '@chakra-ui/react';
 import { FaUserTie } from 'react-icons/fa';
 import { HiMiniUser, HiMiniUsers } from 'react-icons/hi2';
@@ -29,7 +30,7 @@ export const Teams = () => {
   const userIdAccountHook = useGetIdAccount(userId!);
   const userIdAccount = userIdAccountHook?.data as unknown as UserIdAccountType;
 
-  const referrer = userIdAccount?.referrerId;
+  // const referrer = userIdAccount?.referrerId;
   const directReferee = userIdAccount?.refereeIds;
   const team = userIdAccount?.team as UserTeamType[];
 
@@ -37,11 +38,18 @@ export const Teams = () => {
     <VStack spacing={5}>
       {userIdAccountHook?.isFetched ? (
         <>
-          <UserTeamCard
-            heading="Referrer"
-            userId={Number(referrer)}
-            icon={FaUserTie}
-          />
+          <Wrap justify="center">
+            <UserTeamCard
+              heading="Parent"
+              userId={Number(userIdAccount?.parentId)}
+              icon={FaUserTie}
+            />
+            <UserTeamCard
+              heading="Spill Over To"
+              userId={Number(userIdAccount?.referrerId)}
+              icon={FaUserTie}
+            />
+          </Wrap>
 
           <Icon as={ArrowDownIcon}></Icon>
 
@@ -52,7 +60,7 @@ export const Teams = () => {
           />
 
           <Icon as={ArrowDownIcon}></Icon>
-          
+
           <Wrap justify="center">
             {directReferee?.map((refereeId: bigint, key: number) => {
               return (
