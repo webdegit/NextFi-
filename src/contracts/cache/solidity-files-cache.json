@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/suru.martian/Documents/Projects/globalfi/src/contracts/contracts/GlobalFIUpgradeable.sol": {
-      "lastModificationDate": 1708538791920,
-      "contentHash": "c3cef6efcab696c445fcfcfa6171d3fa",
+      "lastModificationDate": 1708539760743,
+      "contentHash": "081a06e57f2e9547a34d9b5575b2ce3f",
       "sourceName": "contracts/GlobalFIUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.20",

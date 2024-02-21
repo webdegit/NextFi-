@@ -397,7 +397,7 @@ contract GlobalFiUpgradeable is
     function _addReferrer(
         IdStruct storage _firstReferrerIdAccount,
         IdStruct storage _userIdAccount
-    ) private returns (bool isSpillOver) {
+    ) private {
         uint256 userId = _userIdAccount.id;
         if (msg.sender != owner()) {
             require(
@@ -463,8 +463,6 @@ contract GlobalFiUpgradeable is
                 _removeIdFromNonGlobal(nonGlobalIdAccount);
                 _nonGlobalIdIncrement++;
             }
-
-            isSpillOver = true;
         }
 
         uint256 levelsToCount = _teamLevelsToCount;
