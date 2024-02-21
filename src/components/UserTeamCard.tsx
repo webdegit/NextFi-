@@ -18,6 +18,7 @@ import { IconType } from 'react-icons';
 import { FaClipboardUser } from 'react-icons/fa6';
 import { HiUserGroup } from 'react-icons/hi';
 import {
+  RefereeType,
   UserIdAccountType,
   useGetIdAccount,
 } from '../hooks/useReferralContract';
@@ -29,10 +30,12 @@ export const UserTeamCard = ({
   heading,
   userId,
   icon,
+  spillOver,
 }: {
   heading: string;
   userId: number;
   icon: IconType;
+  spillOver?: RefereeType;
 }) => {
   const userIdAccount = useGetIdAccount(userId)
     ?.data as unknown as UserIdAccountType;
@@ -68,6 +71,25 @@ export const UserTeamCard = ({
             )}
             balaceCurrencyImage={`/currencyLogos/usdt.svg`}
           />
+          <BalancesContainer
+            // image={`${currentNetwork?.icon}`}
+            icon={GiTakeMyMoney}
+            heading="Total Income"
+            balance={weiToDecimals(
+              Number(userIdAccount?.rewards?.globalRewards) +
+                Number(userIdAccount?.rewards?.referralRewards)
+            )}
+            balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+          />
+          {Number(spillOver?.assignedTo) > 0 && (
+            <BalancesContainer
+              // image={`${currentNetwork?.icon}`}
+              icon={GiTakeMyMoney}
+              heading="Spill Over From"
+              balance={Number(spillOver?.assignedFrom)}
+              // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
+            />
+          )}
           <Button
             borderRadius={'full'}
             variant="outline"

@@ -21,20 +21,18 @@ export type UserTeamType = {
   teamLevel: bigint;
 };
 
+export type RefereeType = {
+  refereeId: bigint;
+  assignedTo: bigint;
+  assignedFrom: bigint;
+};
+
 export type UserIdAccountType = {
   id: bigint;
   owner: `0x${string}`;
   referrerId: bigint;
   parentId: bigint;
-  refereeIds: {
-    refereeId: bigint;
-    assignedTo: bigint;
-    assignedFrom: bigint;
-  }[];
-  refereesAssigned: {
-    refereeId: bigint;
-    assignedToid: bigint;
-  }[];
+  refereeIds: RefereeType[];
   team: UserTeamType[];
   business: {
     directBusiness: bigint;

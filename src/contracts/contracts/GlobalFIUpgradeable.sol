@@ -438,6 +438,7 @@ contract GlobalFiUpgradeable is
             _firstReferrerIdAccount.refereeIds.push(
                 RefereeStruct(userId, nonGlobalIdAccount.id, 0)
             );
+
             nonGlobalIdAccount.refereeIds.push(
                 RefereeStruct(
                     userId,
@@ -445,6 +446,7 @@ contract GlobalFiUpgradeable is
                     _firstReferrerIdAccount.id
                 )
             );
+
             // _firstReferrerIdAccount.refereesAssigned.push(
             //     RefereeAssignedStruct(userId, nonGlobalIdAccount.id)
             // );
@@ -636,6 +638,7 @@ contract GlobalFiUpgradeable is
             address[] memory usersAddress,
             uint256 usersCount,
             uint256 idsCount,
+            uint256[] memory nonGlobalIds,
             uint256 nonGlobalIdsCount,
             uint256 totalReferralPaid,
             uint256 totalValueRegistered
@@ -645,6 +648,7 @@ contract GlobalFiUpgradeable is
         usersCount = _users.length;
         idsCount = _ids;
         nonGlobalIdsCount = _nonGlobalIds.length;
+        nonGlobalIds = _nonGlobalIds;
         totalReferralPaid = _totalReferralPaid;
         totalValueRegistered = _totalValueRegistered;
     }
