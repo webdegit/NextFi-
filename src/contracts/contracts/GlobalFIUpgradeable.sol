@@ -388,7 +388,7 @@ contract GlobalFiUpgradeable is
         IdStruct memory _idAccount
     ) private view returns (bool isLimitReached) {
         // Check if the number of referees is equal to the maximum referee limit.
-        if (_idAccount.refereeIds.length >= _maxRefereeLimit) {
+        if (_idAccount.refereeIds.length > _maxRefereeLimit - 1) {
             // If the limit is reached, set the boolean to true.
             isLimitReached = true;
         }
@@ -456,10 +456,12 @@ contract GlobalFiUpgradeable is
                 nonGlobalIdAccount.id,
                 userId
             );
-            
+
             emit ReferrerUpdated(nonGlobalIdAccount.id, userId);
 
-            _removeIdFromNonGlobal(nonGlobalIdAccount);
+            if (_checkIfMaxRefereeLimit(nonGlobalIdAccount)) {
+                _removeIdFromNonGlobal(nonGlobalIdAccount);
+            }
 
             isSpillOver = true;
         }
