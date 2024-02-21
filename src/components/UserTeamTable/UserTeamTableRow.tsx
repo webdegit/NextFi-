@@ -16,7 +16,6 @@ import {
   UserIdAccountType,
   UserTeamType,
   useGetIdAccount,
-  useGetUserAccount,
 } from '../../hooks/useReferralContract';
 import { shortenAddress } from '../../utils/shortenAddress';
 import { AccountActionButton } from '../AccountActionButton';

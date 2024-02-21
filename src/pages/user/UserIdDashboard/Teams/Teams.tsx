@@ -62,11 +62,11 @@ export const Teams = () => {
           <Icon as={ArrowDownIcon}></Icon>
 
           <Wrap justify="center">
-            {directReferee?.map((refereeId: bigint, key: number) => {
+            {directReferee?.map((refereeId, key: number) => {
               return (
                 <UserTeamCard
                   heading="Referee"
-                  userId={Number(refereeId)}
+                  userId={Number(refereeId?.refereeId)}
                   icon={HiMiniUsers}
                   key={key}
                 />

@@ -26,7 +26,11 @@ export type UserIdAccountType = {
   owner: `0x${string}`;
   referrerId: bigint;
   parentId: bigint;
-  refereeIds: bigint[];
+  refereeIds: {
+    refereeId: bigint;
+    assignedTo: bigint;
+    assignedFrom: bigint;
+  }[];
   refereesAssigned: {
     refereeId: bigint;
     assignedToid: bigint;
