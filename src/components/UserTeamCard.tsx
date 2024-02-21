@@ -85,8 +85,8 @@ export const UserTeamCard = ({
             <BalancesContainer
               // image={`${currentNetwork?.icon}`}
               icon={GiTakeMyMoney}
-              heading="Spill Over From"
-              balance={Number(spillOver?.assignedFrom)}
+              heading="Spill Over To"
+              balance={Number(spillOver?.assignedTo)}
               // balaceCurrencyImage={`/currencyLogos/usdt.svg`}
             />
           )}
