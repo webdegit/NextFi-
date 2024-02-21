@@ -71,16 +71,7 @@ export const UserTeamCard = ({
             )}
             balaceCurrencyImage={`/currencyLogos/usdt.svg`}
           />
-          <BalancesContainer
-            // image={`${currentNetwork?.icon}`}
-            icon={GiTakeMyMoney}
-            heading="Total Income"
-            balance={weiToDecimals(
-              Number(userIdAccount?.rewards?.globalRewards) +
-                Number(userIdAccount?.rewards?.referralRewards)
-            )}
-            balaceCurrencyImage={`/currencyLogos/usdt.svg`}
-          />
+          
           {Number(spillOver?.assignedTo) > 0 && (
             <BalancesContainer
               // image={`${currentNetwork?.icon}`}
