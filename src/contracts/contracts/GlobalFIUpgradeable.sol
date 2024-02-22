@@ -423,6 +423,7 @@ contract GlobalFiUpgradeable is
             _firstReferrerIdAccount.refereeIds.push(
                 RefereeStruct(userId, 0, 0)
             );
+
             emit ReferrerUpdated(_firstReferrerIdAccount.id, userId);
         } else {
             require(
@@ -430,33 +431,39 @@ contract GlobalFiUpgradeable is
                 "_addReferrer(): Global ids are over."
             );
 
-            IdStruct storage nonGlobalIdAccount = _mappingIds[
-                _nonGlobalIds[_nonGlobalIdIncrement]
-            ];
+            for (uint256 i; i < _nonGlobalIds.length; ++i) {
+                uint256 nonGlobalCount = _nonGlobalIdIncrement;
+                IdStruct storage nonGlobalIdAccount = _mappingIds[
+                    _nonGlobalIds[nonGlobalCount]
+                ];
 
-            _userIdAccount.referrerId = nonGlobalIdAccount.id;
-            _firstReferrerIdAccount.refereeIds.push(
-                RefereeStruct(userId, nonGlobalIdAccount.id, 0)
-            );
+                if (nonGlobalIdAccount.id == userId) {
+                    nonGlobalCount++;
+                    continue;
+                }
 
-            nonGlobalIdAccount.refereeIds.push(
-                RefereeStruct(userId, 0, _firstReferrerIdAccount.id)
-            );
+                _userIdAccount.referrerId = nonGlobalIdAccount.id;
+                _firstReferrerIdAccount.refereeIds.push(
+                    RefereeStruct(userId, nonGlobalIdAccount.id, 0)
+                );
 
-            // _firstReferrerIdAccount.refereesAssigned.push(
-            //     RefereeAssignedStruct(userId, nonGlobalIdAccount.id)
-            // );
+                nonGlobalIdAccount.refereeIds.push(
+                    RefereeStruct(userId, 0, _firstReferrerIdAccount.id)
+                );
 
-            emit RefereeAssigned(
-                _firstReferrerIdAccount.id,
-                nonGlobalIdAccount.id,
-                userId
-            );
+                emit RefereeAssigned(
+                    _firstReferrerIdAccount.id,
+                    nonGlobalIdAccount.id,
+                    userId
+                );
 
-            emit ReferrerUpdated(nonGlobalIdAccount.id, userId);
+                emit ReferrerUpdated(nonGlobalIdAccount.id, userId);
 
-            if (_checkIfMaxRefereeLimit(nonGlobalIdAccount)) {
-                _nonGlobalIdIncrement++;
+                if (_checkIfMaxRefereeLimit(nonGlobalIdAccount) && i == 0) {
+                    _nonGlobalIdIncrement++;
+                }
+
+                break;
             }
         }
 

@@ -20,7 +20,7 @@ export const USDT: ContractObjectType = {
 export const GlobalFiUpgradeable: ContractObjectType = {
   contractAddress: {
     // 97: '0xEBBc6D7c95769F5bEc6A28F101e17b05AdF1e064',
-    97: '0xE5579B5Fd2856a67F1D6679A6418Fbe1225d6a14',
+    97: '0x3ca128C1Cc6ad2Aca7B749f1081D52030ee26030',
     137: '0x1960E8aAA582DCdCB8C03c5e75A6265414Ec7D47',
   },
   abi: GlobalFiUpgradeableABI,
