@@ -1,7 +1,7 @@
 import { Chain, bscTestnet, polygon } from 'viem/chains';
 import { GlobalFiUpgradeable } from './ContractAddress';
 
-export const ProjectName = 'GlobalFi';
+export const ProjectName = 'NextFi';
 
 export const MinContribution = 10;
 

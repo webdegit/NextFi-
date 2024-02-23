@@ -23,7 +23,10 @@ export const Header = () => {
         >
           {ProjectName}
         </Text>
-        <Heading maxW="20ch">
+        <Heading maxW="20ch" 
+          fontSize={['7xl', '8xl', '9xl']}
+          lineHeight={1}
+          fontWeight={900}>
           A Fully Decentralized Reward Distribution Protocol built on secured
           smart contracts.
         </Heading>
